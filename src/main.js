@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResize from 'vue-resize'
+
+Vue.use(VueResize)
 
 Vue.config.productionTip = false
 

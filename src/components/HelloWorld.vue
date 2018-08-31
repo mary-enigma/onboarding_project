@@ -1,113 +1,81 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <p>something</p>
+    <p>somthing else</p>
+    {{ info }}
+    <section v-if="errored">
+      <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
+  </section>
   </div>
+  <!-- <div class="chart-demo">
+    <div class="dot-plot">
+        <dot-plot
+          :dataModel='dotPlotData'
+          title='D3 Dot Plot'
+        ></dot-plot>
+      </div>
+  </div> -->
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import axios from 'axios';
+  import 'vue-resize/dist/vue-resize.css';
+  // import dotPlot from '/d3/dotPlot.vue'
+
+  export default {
+    name: 'HelloWorld',
+    data () {
+      return {
+        info: null,
+        loading: true,
+        errored: false
+      }
+    },
+    mounted(){
+      axios
+      .get('https://public.enigma.com/api/snapshots/3ca9486a-db7c-4216-8e99-0428e3b0b54d?&row_limit=500&row_offset=0&include_serialids=true')
+      .then(response => {
+        var resp = response.data
+        console.log(resp)
+        this.filterData(resp)
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+    },
+    methods: {
+      filterData: function(resp){
+        let filteredData = resp.table_rows.rows
+        // debugger
+        let vals = Object.values(filteredData).forEach(function(vals) {console.log(vals)})
+        this.info = vals
+        return this.info
+      }
+    },
+    mapData: function(data){
+      mappedData: {
+
+      }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
 </style>
