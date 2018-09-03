@@ -19,8 +19,8 @@
     },
     props: {
       dataModel: {
-        type: Object,
-        default: ()=>{return {0:["a, b, c"], 1:["d, e, f"], 2:["g, h, i"]}}
+        type: Array,
+        default: ()=>{return [{"name": "str 1"}, {"name": "str2"}]}
       },
       xaxisLabel: {
     		 type: String,
@@ -78,30 +78,31 @@
         // debugger
         var hoverLine = true;
 
-    d3.select(".sort-by")
-    	.on("change", function() {
-      	var attribute = d3.select(this).property("value");
-      	sortLollipops(attribute, 1);
-    	});
+        d3.select(".sort-by")
+        	.on("change", function() {
+          	var attribute = d3.select(this).property("value");
+          	sortLollipops(attribute, 1);
+        	});
 
-		var margin = {top: 120, right: 100, bottom: 50, left: 150};
+        //make margins and svg
+    		var margin = {top: 120, right: 100, bottom: 50, left: 150};
 
-    var width = 960 - margin.left - margin.right,
-    		height = 500 - margin.top - margin.bottom;
+        var width = 960 - margin.left - margin.right,
+        		height = 500 - margin.top - margin.bottom;
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    function sortBy(data, attribute, order) {
-    	data.sort(function(a, b) {
-      	if(a[attribute] < b[attribute]) return -1 * order;
-        if(a[attribute] > b[attribute]) return 1 * order;
-        return 0;
-    	});
-    }
+        function sortBy(data, attribute, order) {
+        	data.sort(function(a, b) {
+          	if(a[attribute] < b[attribute]) return -1 * order;
+            if(a[attribute] > b[attribute]) return 1 * order;
+            return 0;
+        	});
+        }
 
     // need to rewrite so start, min, lowest are the same
     var classToPos = {
@@ -352,16 +353,6 @@
           .transition()
           .call(yAxis);
       }
-    }
-
-    d3.select("svg").on("click", switchBetweenPortraitAndLandscape);
-
-    function recalculateMargin(newMargin) {
-      width = 960 - newMargin.left - newMargin.right;
-      height = 500 - newMargin.top - newMargin.bottom;
-
-     	d3.select("svg").select("g")
-      	.attr("transform", "translate(" + newMargin.left + "," + newMargin.top + ")")
     }
     }
   }
