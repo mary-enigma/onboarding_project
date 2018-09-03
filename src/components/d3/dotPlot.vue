@@ -1,7 +1,7 @@
 <template>
 
   <div style="width:100%;height:100%">
-    <resize-observer @notify="resizeSVG"></resize-observer>
+    <!-- <resize-observer @notify="resizeSVG"></resize-observer> -->
     <div :id="propID" style="width:100%;height:100%" class="dotPlot"/>
   </div>
 
@@ -10,7 +10,7 @@
 <script>
   import * as d3 from 'd3';
   import $ from "jquery";
-  import { ResizeObserver } from 'vue-resize';
+  // import { ResizeObserver } from 'vue-resize';
 
   export default {
     name: 'dot-plot',
@@ -19,8 +19,8 @@
     },
     props: {
       dataModel: {
-        type: Array,
-        default: ()=>{return [{"month":"January", "A":20, "B": 5,  "C": 10}]}
+        type: Object,
+        default: ()=>{return {0:["a, b, c"], 1:["d, e, f"], 2:["g, h, i"]}}
       },
       xaxisLabel: {
     		 type: String,
@@ -52,6 +52,7 @@
   		}
   	},
     mounted: function() {
+      // debugger
   		this.dataModel.length !== 0 ? this.drawDotPlot(
         this._props.dataModel,
         this._props.propID,
@@ -74,13 +75,8 @@
         yAxisLabel = this._props.yaxisLabel,
         xAxisLabel = this._props.xaxisLabel
       ) {
-        var hoverLine = false;
-        var landscape = true;
-
-    d3.select(".hover-line")
-    	.on("click", function() {
-      	hoverLine = d3.select(this).property("checked");
-    	});
+        // debugger
+        var hoverLine = true;
 
     d3.select(".sort-by")
     	.on("change", function() {
@@ -110,22 +106,20 @@
     // need to rewrite so start, min, lowest are the same
     var classToPos = {
       "lollipop-start": "min",
-      "lollipop-median": "median",
       "lollipop-end": "max"
     }
 
     var legendLabels = [
-      {label: "Lowest", class: "lollipop-start"},
-      {label: "Median", class: "lollipop-median"},
-      {label: "Highest", class: "lollipop-end"}
+      {label: "Women", class: "lollipop-start"},
+      {label: "Men", class: "lollipop-end"}
     ];
 
     var legendX = 300,
     		legendY = -50,
     		spaceBetween = 70,
-        titleOffset = -120;
+        titleOffset = -150;
 
-   	// code for positioning legend
+   	// positioning legend
     var legend = svg.append("g")
     	.attr("transform", "translate(" + [legendX, legendY] + ")");
 
@@ -133,9 +127,8 @@
     	.attr("class", "title")
       .append("text")
     	.attr("x", titleOffset)
-      .text("Yearly Salary (£)")
+      .text("Median Earnings ($)  ")
 
-    // Try using Susie Lu's d3-legend
     // add circles
     legend.selectAll("circle")
     	.data(legendLabels)
@@ -163,9 +156,8 @@
     	.style("opacity", 0);
 
     var posToColour = {
-      min: "#00c100",
-      median: "white",
-      max: "#d700d7"
+      min: "#D770AD",
+      max: "#4A89DC"
     };
 
     var y = d3.scaleBand()
@@ -196,19 +188,15 @@
         lollipopsGroup;
 
     var startCircles,
-        medianCircles,
         endCircles;
 
     // Make global for now
     var payRatios;
 
-    var url = "https://raw.githubusercontent.com/tlfrd/pay-ratios/master/data/payratio.json";
-
-    d3.json(url, function(error, data) {
-      if (error) throw error;
+    // var url = "https://raw.githubusercontent.com/tlfrd/pay-ratios/master/data/payratio.json"
 
       payRatios = data.pay_ratios_2015_16;
-
+// debugger
       // use -1 to flip ordering
     	sortBy(payRatios, "name", 1);
 
@@ -287,26 +275,6 @@
     	.on("mousemove", moveLabel)
       .on("mouseout", hideLabel);
 
-      medianCircles = lollipops.append("circle")
-        .attr("class", "lollipop-median")
-        .attr("r", function(d) {
-          if (d.median === "N/A") {
-            return 0;
-          } else {
-            return 5;
-          }
-        })
-        .attr("cx", function(d) {
-          if (d.median === "N/A") {
-            return 0;
-          } else {
-            return x(d.median);
-          }
-        })
-        .on("mouseover", showLabel)
-        .on("mousemove", moveLabel)
-        .on("mouseout", hideLabel);
-
       endCircles = lollipops.append("circle")
         .attr("class", "lollipop-end")
         .attr("r", 5)
@@ -316,8 +284,6 @@
         .on("mouseover", showLabel)
         .on("mousemove", moveLabel)
         .on("mouseout", hideLabel);
-
-		});
 
     function showLabel() {
        	var selection = d3.select(this);
@@ -386,8 +352,6 @@
           .transition()
           .call(yAxis);
       }
-
-
     }
 
     d3.select("svg").on("click", switchBetweenPortraitAndLandscape);
@@ -399,170 +363,9 @@
      	d3.select("svg").select("g")
       	.attr("transform", "translate(" + newMargin.left + "," + newMargin.top + ")")
     }
-
-    function switchBetweenPortraitAndLandscape() {
-
-      if (landscape) {
-        landscape = false;
-
-        recalculateMargin({top: 100, right: 100, bottom: 100, left: 100})
-
-        // Redraw xAxis
-        x.range([height, 0]);
-
-      	xAxis = d3.axisLeft().scale(x)
-          .tickFormat(function(d, i) {
-            if (i == 0) {
-              return "£0"
-            } else {
-              return d3.format(".2s")(d);
-            }
-          });
-
-      	yAxisGroup.select(".y-axis")
-          .call(xAxis)
-        	.attr("transform", "translate(0, 0)")
-          .select(".domain")
-          	.attr("opacity", 1);
-
-        // Redraw yAxis
-       	y.range([0, width]);
-
-        yAxis = d3.axisBottom().scale(y)
-    			.tickSize(0);
-
-        xAxisGroup.select(".x-axis")
-          .call(yAxis)
-        	.attr("transform", "translate(0," + height + ")")
-          .select(".domain")
-          	.attr("opacity", 0);
-
-        xAxisGroup.select(".x-axis").selectAll("text")
-          .attr("y", 9)
-          .attr("x", 9)
-          .attr("transform", "rotate(45)")
-          .style("text-anchor", "start");
-
-        // Redraw lollipops
-
-				lollipops.attr("transform", function(d) {
-          return "translate(" + [(y(d.name) + (y.bandwidth() / 2)), 0] + ")";
-        });
-
-        lollipops.select(".lollipop-line")
-        	.attr("d", function(d) {
-          	return lineGenerator([[0, x(d.min)], [0, x(d.max)]]);
-        	})
-        lollipops.select(".lollipop-start")
-        	.attr("cy", function(d) {
-          	return x(d.min);
-        	})
-        	.attr("cx", 0);
-        lollipops.select(".lollipop-median")
-          .attr("cy", function(d) {
-            if (d.median === "N/A") {
-              return 0;
-            } else {
-              return x(d.median);
-            }
-        	})
-        	.attr("cx", 0);
-        lollipops.select(".lollipop-end")
-          .attr("cy", function(d) {
-          	return x(d.max);
-        	})
-        	.attr("cx", 0);
-
-        // Redraw grid lines
-
-        axisLines.selectAll(".grid-line")
-        	.attr("d", function(d) {
-          	return lineGenerator([[0, x(d) + 0.5], [width, x(d) + 0.5]]);
-        	});
-
-        // Move legend
-
-        legend.attr("transform", "translate(" + [legendX + 40, legendY] + ")");
-
-      } else {
-
-        landscape = true;
-
-        recalculateMargin(margin);
-
-       	// Redraw xAxis
-        x.range([0, width]);
-
-      	xAxis = d3.axisTop().scale(x)
-          .tickFormat(function(d, i) {
-            if (i == 0) {
-              return "£0"
-            } else {
-              return d3.format(".2s")(d);
-            }
-          });
-
-      	xAxisGroup.select(".x-axis")
-          .call(xAxis)
-        	.attr("transform", "translate(0,0)")
-        	.select(".domain")
-          	.attr("opacity", 1);
-
-        // Redraw yAxis
-       	y.range([0, height]);
-
-        yAxis = d3.axisLeft().scale(y)
-    			.tickSize(0);
-
-        yAxisGroup.select(".y-axis")
-          .call(yAxis)
-        	.attr("transform", "translate(-20, 0)")
-          .select(".domain")
-          	.attr("opacity", 0);
-
-        // Redraw lollipops
-
-        lollipops.attr("transform", function(d) {
-          return "translate(0," + (y(d.name) + (y.bandwidth() / 2)) + ")";
-        });
-
-        lollipops.select(".lollipop-line")
-        	.attr("d", function(d) {
-          	return lineGenerator([[x(d.min), 0], [x(d.max), 0]]);
-        	})
-        lollipops.select(".lollipop-start")
-        	.attr("cx", function(d) {
-          	return x(d.min);
-        	})
-        	.attr("cy", 0);
-        lollipops.select(".lollipop-median")
-          .attr("cx", function(d) {
-            if (d.median === "N/A") {
-              return 0;
-            } else {
-              return x(d.median);
-            }
-        	})
-        	.attr("cy", 0);
-        lollipops.select(".lollipop-end")
-          .attr("cx", function(d) {
-          	return x(d.max);
-        	})
-        	.attr("cy", 0);
-
-        // Redraw grid lines
-
-        axisLines.selectAll(".grid-line")
-        	.attr("d", axisLinePath);
-
-        // Reposition legend
-
-        legend.attr("transform", "translate(" + [legendX, legendY] + ")");
-      }
-
-      }
     }
   }
+}
 </script>
 
 <style>
@@ -621,11 +424,11 @@
   }
 
   circle.lollipop-start {
-    fill: #00c100;
+    fill: #D770AD;
   }
 
   .lollipop-end {
-    fill: #d700d7;
+    fill: #4A89DC;
   }
 
   .lollipop-median {
