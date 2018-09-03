@@ -33,7 +33,7 @@
         info: null,
         loading: true,
         errored: false,
-        dotPlotData: []
+        // dotPlotData: []
       }
     },
     components: {
@@ -104,20 +104,38 @@
       },
       filterDotPlot1Data: function(data){
 
+        //choose selected fields for the first dot plot
         var filteredValues = ["Legislators", "Materials engineers", "Dental assistants", "Waiters and waitresses"]
 
-        var newData = []
+        // filter by these fields
         var result = data.filter((e)=>{
           // debugger
           return filteredValues.includes(e[0])
-          // var mappedData = {}
-          // item[0]=="Barbers"
-          // mappedData["name"] = item[0]
-          // mappedData["median-men"] = item[12]
-          // mappedData["median-women"] = item[14]
-          // newData.push(mappedData)
         })
-        debugger
+        // debugger
+        this.mapFilteredData(result);
+        // var mappedData = {}
+        // item[0]=="Barbers"
+        // mappedData["name"] = item[0]
+        // mappedData["median-men"] = item[12]
+        // mappedData["median-women"] = item[14]
+        // newData.push(mappedData)
+
+
+
+        // var filteredValues = ["Legislators", "Materials engineers", "Dental assistants", "Waiters and waitresses"]
+        //
+        // var newData = []
+        // var result = data.filter((e)=>{
+        //   // debugger
+        //   return filteredValues.includes(e[0])
+        //   // var mappedData = {}
+        //   // item[0]=="Barbers"
+        //   // mappedData["name"] = item[0]
+        //   // mappedData["median-men"] = item[12]
+        //   // mappedData["median-women"] = item[14]
+        //   // newData.push(mappedData)
+        // })
 
         // return newData;
 
@@ -220,7 +238,21 @@
       //   // }
       // })
     //  this.dotPlotData = mappedDotPlot1
-    }
+  },
+  //map data to object so we can make graph
+  mapFilteredData(data){
+    var mappedDotPlot1 = []
+    data.map((val)=>{
+      var mappedData = {}
+      mappedData["name"] = val[0]
+      mappedData["median-men"] = val[12]
+      mappedData["median-women"] = val[14]
+      mappedDotPlot1.push(mappedData)
+    })
+    // return mappedDataPlot1;
+    this.dotPlotData = mappedDotPlot1
+    debugger
+  }
   }
 }
 </script>
