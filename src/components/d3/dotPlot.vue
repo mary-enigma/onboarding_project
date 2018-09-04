@@ -53,14 +53,12 @@
   	},
     mounted: function() {
       // debugger
-  		// this.dataModel.length !== 0 ? this.drawDotPlot(
-      //   this._props.dataModel,
-      //   this._props.propID,
-      //   this._props.yaxisLabel,
-      //   this._props.xaxisLabel
-      // ) : null
-      // debugger
-      this.drawDotPlot(data)
+  		this.dataModel.length !== 0 ? this.drawDotPlot(
+        this._props.dataModel,
+        this._props.propID,
+        this._props.yaxisLabel,
+        this._props.xaxisLabel
+      ) : null
   	},
     destroyed() {
       d3.selectAll(`.${this.propID}_tooltip`).remove()
@@ -77,7 +75,7 @@
         yAxisLabel = this._props.yaxisLabel,
         xAxisLabel = this._props.xaxisLabel
       ) {
-        debugger
+        // debugger
         var hoverLine = true;
 
         d3.select(".sort-by")
@@ -99,7 +97,6 @@
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         function sortBy(data, attribute, order) {
-          // debugger
         	data.sort(function(a, b) {
           	if(a[attribute] < b[attribute]) return -1 * order;
             if(a[attribute] > b[attribute]) return 1 * order;
@@ -131,7 +128,7 @@
     	.attr("class", "title")
       .append("text")
     	.attr("x", titleOffset)
-      .text("Median Earnings ($)")
+      .text("Median Earnings ($)  ")
 
     // add circles
     legend.selectAll("circle")
@@ -148,7 +145,7 @@
     legend.append("g")
       .selectAll("text")
     	.data(legendLabels)
-      .enter().append("text")
+    .enter().append("text")
       .attr("x", function(d, i) {
       	return spaceBetween * i + 10;
     	})
@@ -195,17 +192,17 @@
         endCircles;
 
     // Make global for now
-    var dotPlotData;
+    var payRatios;
 
     // var url = "https://raw.githubusercontent.com/tlfrd/pay-ratios/master/data/payratio.json"
 
+      payRatios = data.pay_ratios_2015_16;
 // debugger
       // use -1 to flip ordering
-      // debugger
-    	sortBy(dotPlotData, "name", 1);
+    	sortBy(payRatios, "name", 1);
 
-      y.domain(dotPlotData.map(function(d) { return d.name }));
-      x.domain([0, d3.max(dotPlotData, function(d) { return d.max })]);
+      y.domain(payRatios.map(function(d) { return d.name }));
+      x.domain([0, d3.max(payRatios, function(d) { return d.max })]);
       x.nice();
 
       yAxis = d3.axisLeft().scale(y)
