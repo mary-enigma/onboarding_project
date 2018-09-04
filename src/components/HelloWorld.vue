@@ -8,7 +8,7 @@
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
     <autocomplete
-      :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']"
+      :items="info"
     ></autocomplete>
     <!-- <div class="user-input">
       <h2>Explore the data</h2>

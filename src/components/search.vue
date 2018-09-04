@@ -41,9 +41,9 @@ export default {
 
    props: {
      items: {
-       type: Array,
-       required: false,
-       default: () => [],
+       // type: Object,
+       // required: false,
+       // default: () => {},
      },
      isAsync: {
        type: Boolean,
@@ -79,9 +79,11 @@ export default {
 
      filterResults() {
        // first uncapitalize all the things
-       this.results = this.items.filter((item) => {
-         return item.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+       // debugger
+       var filterData = this.items.filter((item) => {
+         return item[0].toLowerCase().indexOf(this.search.toLowerCase()) > -1;
        });
+       this.results = filterData.map((e)=>{return e[0]})
      },
      setResult(result) {
        this.search = result;
