@@ -7,6 +7,22 @@
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
+    <autocomplete
+      :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']"
+    ></autocomplete>
+    <!-- <div class="user-input">
+      <h2>Explore the data</h2>
+      <label>Search field:</label>
+      <input type="text" v-model="searchTerm" />
+      <button v-on:click="fetchInput()">Search</button>
+      <p>
+        {{ fieldSearch.name }}
+        {{ fieldSearch.mens_earnings }}
+        {{ fieldSearch.womens_earnings }}
+        {{ fieldSearch.womens_mens_percentage }}
+        {{ stuff }}
+      </p>
+    </div> -->
     </div>
     <div class="charts">
       <div class="dot-plot">
@@ -24,6 +40,7 @@
   import axios from 'axios';
   import 'vue-resize/dist/vue-resize.css';
   import DotPlot from './d3/dotPlot.vue';
+  import Search from './search.vue';
   import * as d3 from "d3";
   import _ from 'lodash';
 
@@ -31,14 +48,21 @@
     name: 'HelloWorld',
     data () {
       return {
-        info: null,
+        info: {},
         loading: true,
         errored: false,
-        dotPlot1Data: []
+        dotPlot1Data: [],
+        fieldSearch: [{
+          name: null,
+          mens_earnings: null,
+          womens_earnings: null,
+          womens_mens_percentage: null
+        }]
       }
     },
     components: {
-      'dot-plot': DotPlot
+      'dot-plot': DotPlot,
+      'autocomplete': Search
     },
     mounted(){
     // debugger
@@ -143,6 +167,23 @@
         // this.dotPlot1Data = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot1Data))
+      }
+    },
+    computed: {
+      fetchInput(){
+        console.log(this.info)
+        var self = this;
+        return this.info.filter((item)=>{
+          debugger
+          return item[0].indexOf(self.searchTerm.toLowerCase())>=0;
+          // return item.name.toLowerCase().indexOf(self.searchTerm.toLowerCase())>=0;
+        })
+        // return this.customers.filter(function(cust){return cust.name.toLowerCase().indexOf(self.search.toLowerCase())>=0;})
+        // var inputValue = input;
+        // var result = data.filter((e)=>{
+        //   data.includes(e[0])
+        //   fieldSearch = result
+        // })
       }
     }
   }
