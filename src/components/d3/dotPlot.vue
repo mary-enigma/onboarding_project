@@ -20,7 +20,7 @@
     props: {
       dataModel: {
         type: Array,
-        default: ()=>{return [{"name": "str 1"}, {"name": "str2"}]}
+        default: ()=>{return []}
       },
       xaxisLabel: {
     		 type: String,
@@ -41,26 +41,34 @@
         }
     },
   	watch: {
-  		dataModel: function(data) {
+      dataModel: function(data) {
   			// console.log('BarChart dataModel changed')
   			if (this.internalData.length === 0) {
   				this.update = false
   			} else {
   				this.update = true
   			}
+        // debugger
   			this.drawDotPlot(data)
   		}
   	},
     mounted: function() {
       // debugger
-  		// this.dataModel.length !== 0 ? this.drawDotPlot(
+      // setTimeout(function(){
+      //   this.dataModel.length !== 0 ? this.drawDotPlot(
       //   this._props.dataModel,
       //   this._props.propID,
       //   this._props.yaxisLabel,
       //   this._props.xaxisLabel
-      // ) : null
+      // ) : null }, 100000000);
       // debugger
-      this.drawDotPlot(data)
+  		this.dataModel.length !== 0 ? this.drawDotPlot(
+        this._props.dataModel,
+        this._props.propID,
+        this._props.yaxisLabel,
+        this._props.xaxisLabel
+      ) : null
+
   	},
     destroyed() {
       d3.selectAll(`.${this.propID}_tooltip`).remove()
@@ -77,7 +85,7 @@
         yAxisLabel = this._props.yaxisLabel,
         xAxisLabel = this._props.xaxisLabel
       ) {
-        debugger
+        // debugger
         var hoverLine = true;
 
         d3.select(".sort-by")
@@ -98,11 +106,12 @@
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+        //sorts the data by max (men's) earnings
         function sortBy(data, attribute, order) {
-          // debugger
         	data.sort(function(a, b) {
-          	if(a[attribute] < b[attribute]) return -1 * order;
-            if(a[attribute] > b[attribute]) return 1 * order;
+            debugger
+          	if(a[attribute] < b[attribute]) return 1 * order;
+            if(a[attribute] > b[attribute]) return -1 * order;
             return 0;
         	});
         }
@@ -195,17 +204,18 @@
         endCircles;
 
     // Make global for now
-    var dotPlotData;
+    // var dotPlotData;
+    var plotData;
 
     // var url = "https://raw.githubusercontent.com/tlfrd/pay-ratios/master/data/payratio.json"
-
-// debugger
+    plotData = data.plot1;
+debugger
       // use -1 to flip ordering
       // debugger
-    	sortBy(dotPlotData, "name", 1);
+    	sortBy(plotData, "max", 1);
 
-      y.domain(dotPlotData.map(function(d) { return d.name }));
-      x.domain([0, d3.max(dotPlotData, function(d) { return d.max })]);
+      y.domain(plotData.map(function(d) { return d.name }));
+      x.domain([0, d3.max(plotData, function(d) { return d.max })]);
       x.nice();
 
       yAxis = d3.axisLeft().scale(y)
@@ -258,7 +268,7 @@
       lollipopsGroup = svg.append("g").attr("class", "lollipops");
 
      	lollipops = lollipopsGroup.selectAll("g")
-        .data(payRatios)
+        .data(plotData)
       .enter().append("g")
         .attr("class", "lollipop")
         .attr("transform", function(d) {
@@ -331,9 +341,9 @@
     }
 
     function sortLollipops(attribute, ordering) {
-      sortBy(payRatios, attribute, 1);
+      sortBy(plotData, attribute, 1);
 
-			y.domain(payRatios.map(function(d) { return d.name })).copy();
+			y.domain(plotData.map(function(d) { return d.name })).copy();
 
       if (landscape) {
         lollipops

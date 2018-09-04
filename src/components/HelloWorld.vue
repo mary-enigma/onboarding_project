@@ -40,7 +40,7 @@
       'dot-plot': DotPlot
     },
     mounted(){
-
+    // debugger
     },
     created(){
       //this gets all the data
@@ -86,8 +86,17 @@
       //    "median":32125
       // }]
       // }
+      this.dotPlot1Data = {
+      "plot1": [
+        {"name":"Legislators","max":"67233","min":"63788"},
+        {"name":"Materials engineers","max":"81479","min":"80865"},
+        {"name":"Dental assistants","max":"32231","min":"31161"},
+        {"name":"Waiters and waitresses","max":"25855","min":"21182"}
+      ]
+    }
     },
     methods: {
+
       //filters out metadata
       filterData: function(resp){
         let filteredData = resp.table_rows.rows
@@ -114,12 +123,16 @@
         data.map((val)=>{
           var mappedData = {}
           mappedData["name"] = val[0]
-          mappedData["median-men"] = val[12]
-          mappedData["median-women"] = val[14]
+          mappedData["max"] = val[12]
+          mappedData["min"] = val[14]
           mappedDotPlot1.push(mappedData)
         })
-        this.dotPlot1Data = mappedDotPlot1
+        var mappedDataObj = {}
+        mappedDataObj["plot1"] = mappedDotPlot1
+        //[{},{},{}]
+        // this.dotPlot1Data = mappedDataObj
         // debugger
+        // console.log(this.dotPlot1Data)
       }
     }
   }
