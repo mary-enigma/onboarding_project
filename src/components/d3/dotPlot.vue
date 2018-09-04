@@ -19,8 +19,8 @@
     },
     props: {
       dataModel: {
-        type: Array,
-        default: ()=>{return []}
+        type: Object,
+        default: ()=>{return {}}
       },
       xaxisLabel: {
     		 type: String,
@@ -316,8 +316,8 @@
           selectionLine
           	.attr("d", function() {
                 return lineGenerator([[0, x(data[pos])], [width, x(data[pos])]]);
-              }
-              .attr("opacity", 0.75)
+          	})
+          	.attr("opacity", 0.75);
         }
     }
 
@@ -340,18 +340,17 @@
       sortBy(plotData, attribute, 1);
 
 			y.domain(plotData.map(function(d) { return d.name })).copy();
-{
-         lollipops
+
+        lollipops
           .transition()
           .attr("transform", function(d) {
-            return "translate(" + [(y(d.name) + y.bandwidth() / 2), 0] + ")";
+            return "translate(" + [0, (y(d.name) + y.bandwidth() / 2)] + ")";
           });
 
-         xAxisGroup.select(".x-axis")
+        yAxisGroup.select(".y-axis")
           .transition()
           .call(yAxis);
-      }
-    }
+        }
     }
   }
 }
