@@ -109,7 +109,7 @@
         //sorts the data by max (men's) earnings
         function sortBy(data, attribute, order) {
         	data.sort(function(a, b) {
-            debugger
+            // debugger
           	if(a[attribute] < b[attribute]) return 1 * order;
             if(a[attribute] > b[attribute]) return -1 * order;
             return 0;
@@ -209,7 +209,7 @@
 
     // var url = "https://raw.githubusercontent.com/tlfrd/pay-ratios/master/data/payratio.json"
     plotData = data.plot1;
-debugger
+// debugger
       // use -1 to flip ordering
       // debugger
     	sortBy(plotData, "max", 1);
@@ -224,7 +224,7 @@ debugger
       xAxis = d3.axisTop().scale(x)
         .tickFormat(function(d,i) {
           if (i == 0) {
-            return "£0"
+            return "$0"
           } else {
             return d3.format(".2s")(d);
           }
@@ -307,7 +307,7 @@ debugger
         div.transition()
         	.duration(100)
         	.style("opacity", 0.9)
-        div.html("£" + (selection.datum()[pos]))
+        div.html("$" + (selection.datum()[pos]))
           .style("left", (d3.event.pageX - 30) + "px")
           .style("top", (d3.event.pageY - 40) + "px")
         	.style("background-color", posToColour[pos])
@@ -315,14 +315,9 @@ debugger
       	if (hoverLine) {
           selectionLine
           	.attr("d", function() {
-            	if (landscape) {
-                return lineGenerator([[x(data[pos]), 0], [x(data[pos]), height]]);
-              } else {
                 return lineGenerator([[0, x(data[pos])], [width, x(data[pos])]]);
               }
-
-          	})
-          	.attr("opacity", 0.75);
+              .attr("opacity", 0.75)
         }
     }
 
@@ -341,21 +336,11 @@ debugger
     }
 
     function sortLollipops(attribute, ordering) {
+      // debugger
       sortBy(plotData, attribute, 1);
 
 			y.domain(plotData.map(function(d) { return d.name })).copy();
-
-      if (landscape) {
-        lollipops
-          .transition()
-          .attr("transform", function(d) {
-            return "translate(" + [0, (y(d.name) + y.bandwidth() / 2)] + ")";
-          });
-
-        yAxisGroup.select(".y-axis")
-          .transition()
-          .call(yAxis);
-      } else {
+{
          lollipops
           .transition()
           .attr("transform", function(d) {

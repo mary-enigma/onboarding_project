@@ -10,6 +10,7 @@
     </div>
     <div class="charts">
       <div class="dot-plot">
+          <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
           <dot-plot
             :dataModel='dotPlot1Data'
             title='First Dot Plot'
@@ -86,14 +87,20 @@
       //    "median":32125
       // }]
       // }
+      // this.dotPlot1Data = {
+      //   "plot1": [
+      //     {"name":"Legislators","max":"67233","min":"63788"},
+      //     {"name":"Materials engineers","max":"81479","min":"80865"},
+      //     {"name":"Dental assistants","max":"32231","min":"31161"},
+      //     {"name":"Waiters and waitresses","max":"25855","min":"21182"}
+      //   ]
+      // }
       this.dotPlot1Data = {
-      "plot1": [
-        {"name":"Legislators","max":"67233","min":"63788"},
-        {"name":"Materials engineers","max":"81479","min":"80865"},
-        {"name":"Dental assistants","max":"32231","min":"31161"},
-        {"name":"Waiters and waitresses","max":"25855","min":"21182"}
-      ]
-    }
+        "plot1": [
+          {"name":"Chief executives","max":"141108","min":"103564"},{"name":"Financial managers","max":"100505","min":"62089"},{"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
+        ]
+      }
+
     },
     methods: {
 
@@ -108,7 +115,10 @@
       filterDotPlot1Data: function(data){
 
         //choose selected fields for the first dot plot
-        var filteredValues = ["Legislators", "Materials engineers", "Dental assistants", "Waiters and waitresses"]
+        var filteredValues =
+        ["Driver/sales workers and truck drivers", "First-line supervisors of retail sales workers", "Elementary and middle school teachers", "Registered nurses", "Secretaries and administrative assistants", "Customer service representatives", "Retail salespersons", "Accountants and auditors", "Janitors and building cleaners", "Laborers and freight, stock, and material movers, hand", "Nursing, psychiatric, and home health aides", "Cooks", "First-line supervisors of office and administrative support workers", "Sales representatives, wholesale and manufacturing", "Construction laborers", "Software developers, applications and systems software", "First-line supervisors of non-retail sales workers", "Chief executives", "Financial managers", "Cashiers"]
+
+        // ["Chief executives", "Legislators", "Marketing and sales managers", "Human resources managers", "Medical and health services managers", "Human resources workers", "Financial analysts", "Software developers, applications and systems software", "Web developers", "Actuaries", "Civil engineers", "Electrical and electronics engineers", "Materials engineers", "Medical scientists", "Economists", "Psychologists", "Social workers", "Dental assistants", "Waiters and waitresses"]
 
         // filter by these fields
         var result = data.filter((e)=>{
@@ -132,7 +142,7 @@
         //[{},{},{}]
         // this.dotPlot1Data = mappedDataObj
         // debugger
-        // console.log(this.dotPlot1Data)
+        // console.log(JSON.stringify(this.dotPlot1Data))
       }
     }
   }
