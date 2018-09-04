@@ -1,37 +1,50 @@
 <template>
-  <div class="autocomplete">
-      <input
-        type="text"
-        @input="onChange"
-        v-model="search"
-        @keydown.down="onArrowDown"
-        @keydown.up="onArrowUp"
-        @keydown.enter="onEnter"
-      />
-      <ul
-        id="autocomplete-results"
-        v-show="isOpen"
-        class="autocomplete-results"
-      >
-        <li
-          class="loading"
-          v-if="isLoading"
+  <div>
+    <div class="autocomplete">
+      <label>Search for a field (example: accountant):</label>
+        <input
+          type="text"
+          @input="onChange"
+          v-model="search"
+          @keydown.down="onArrowDown"
+          @keydown.up="onArrowUp"
+          @keydown.enter="onEnter"
+        />
+        <ul
+          id="autocomplete-results"
+          v-show="isOpen"
+          class="autocomplete-results"
         >
-          Loading results...
-        </li>
-        <li
-          v-else
-          v-for="(result, i) in results"
-          :key="i"
-          @click="setResult(result)"
-          class="autocomplete-result"
-          :class="{ 'is-active': i === arrowCounter }"
-        >
-          {{ result }}
-        </li>
-      </ul>
+          <li
+            class="loading"
+            v-if="isLoading"
+          >
+            Loading results...
+          </li>
+          <li
+            v-else
+            v-for="(result, i) in results"
+            :key="i"
+            @click="setResult(result)"
+            class="autocomplete-result"
+            :class="{ 'is-active': i === arrowCounter }"
+          >
+            {{ result }}
+          </li>
+        </ul>
     </div>
-
+    <div class="display-results">
+      <p>
+        Result:
+      </p>
+      <p>
+        Field Name: {{ displayItem[0] }} </br>
+        Median earnings men: {{ displayItem[12] }} </br>
+        Median earnings women: {{ displayItem[14] }} </br>
+        Women's earnings as a percentage of men's earnings: {{ displayItem[16] }}
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -41,9 +54,6 @@ export default {
 
    props: {
      items: {
-       // type: Object,
-       // required: false,
-       // default: () => {},
      },
      isAsync: {
        type: Boolean,
@@ -56,9 +66,12 @@ export default {
      return {
        isOpen: false,
        results: [],
+       name: '',
        search: '',
        isLoading: false,
        arrowCounter: 0,
+       filteredData: [],
+       displayItem: []
      };
    },
 
@@ -78,16 +91,18 @@ export default {
      },
 
      filterResults() {
-       // first uncapitalize all the things
-       // debugger
-       var filterData = this.items.filter((item) => {
+       // uncapitalize everything
+       this.filterData = this.items.filter((item) => {
          return item[0].toLowerCase().indexOf(this.search.toLowerCase()) > -1;
        });
-       this.results = filterData.map((e)=>{return e[0]})
+       this.results = this.filterData.map((e)=>{return e[0]})
+
      },
      setResult(result) {
        this.search = result;
        this.isOpen = false;
+       // debugger
+       this.displayResult();
      },
      onArrowDown(evt) {
        if (this.arrowCounter < this.results.length) {
@@ -109,8 +124,15 @@ export default {
          this.isOpen = false;
          this.arrowCounter = -1;
        }
-     }
-   },
+     },
+    displayResult(){
+      var target = this.filterData.filter((item) => {
+        return item[0].toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+      });
+      this.displayItem = target[0]
+  // debugger
+    }
+  },
    watch: {
      items: function (val, oldValue) {
        // actually compare them
@@ -154,7 +176,7 @@ export default {
 
   .autocomplete-result.is-active,
   .autocomplete-result:hover {
-    background-color: #4AAE9B;
+    background-color: #D770AD;
     color: white;
   }
 
