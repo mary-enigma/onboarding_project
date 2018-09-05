@@ -126,20 +126,14 @@
                     return "translate(" + d.x + "," + d.y + ")";
                 })
 
-              // var scale = d3.scaleLinear().domain([50, 98]).range([50, 98]);
 
-            node.append("title")
-                .text(function(d) {
-                    return d.Name + ": " + d.Count;
-                });
+            // node.append("title")
+            //     .text(function(d) {
+            //         return d.Name + ": " + d.Count;
+            //     });
 
-                // var radius = "70px"
             node.append("circle")
-              // .attr("r", 100)
                 .attr("r", function(d) {
-                  // debugger
-                  // return d.radius
-                    // return d.r;
                     return scaleRadius(d.r)
                 })
                 .style("fill", function(d,i) {
@@ -150,14 +144,23 @@
                 .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
             node.append("text")
-                .attr("dy", ".2em")
+                .attr("dy", ".3em")
                 .style("text-anchor", "middle")
-                .text(function(d) {
-                    return d.data.Name.substring(0, d.r / 3);
-                })
                 .attr("font-family", "sans-serif")
                 .attr("font-size", function(d){
                     return d.r/5;
+                })
+              //   .attr("font-size", function(d) {
+              //     var len = d.data.Name.substring(0, d.r / 3).length;
+              //     var size = d.r/3;
+              //     size *= 10 / len;
+              //     size += 1;
+              //     return Math.round(size)+'px';
+              // })
+                .text(function(d) {
+                    var longText = d.data.Name.substring(0, d.r / 3)
+                    var text = longText.split(" ")[0].replace( /,/g, "" );
+                    return text
                 })
                 .attr("fill", "white");
 
