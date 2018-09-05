@@ -311,14 +311,6 @@
           .style("left", (d3.event.pageX - 30) + "px")
           .style("top", (d3.event.pageY - 40) + "px")
         	.style("background-color", posToColour[pos])
-
-      	if (hoverLine) {
-          selectionLine
-          	.attr("d", function() {
-                return lineGenerator([[0, x(data[pos])], [width, x(data[pos])]]);
-          	})
-          	.attr("opacity", 0.75);
-        }
     }
 
     function moveLabel() {

@@ -7,6 +7,7 @@
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
+    <h2>Explore the Data</h2>
     <autocomplete
       :items="info"
     ></autocomplete>

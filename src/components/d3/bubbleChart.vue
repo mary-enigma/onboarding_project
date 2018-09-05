@@ -89,20 +89,27 @@
                 // debugger
                   return d.Count
                 }))
-                .range([100, -20]);
+                .range([100, -30]);
 
             // var rScale = d3.scaleLog();
             // rScale.domain([1, 100]).range([1, 600])
 
             var bubble = d3.pack(data)
                 .size([diameter, height])
-                .padding(1.5);
+                .padding(.5);
 
             var svg = d3.select("body")
                 .append("svg")
                 .attr("width", diameter)
                 .attr("height", diameter)
                 .attr("class", "bubble");
+
+            var tooltip = d3.select("body")
+            	.append("div")
+            	.style("position", "absolute")
+            	.style("z-index", "10")
+            	.style("visibility", "hidden")
+            	.text("a simple tooltip");
 
             var nodes = d3.hierarchy(data)
                 .sum(function(d) { return d.Count; });
@@ -137,7 +144,10 @@
                 })
                 .style("fill", function(d,i) {
                     return color(i);
-                });
+                })
+                .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+                .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+                .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
             node.append("text")
                 .attr("dy", ".2em")
@@ -159,7 +169,7 @@
                 })
                 .attr("font-family",  "Gill Sans", "Gill Sans MT")
                 .attr("font-size", function(d){
-                    return d.r/5;
+                    return d.r/2;
                 })
                 .attr("fill", "white");
 
@@ -171,5 +181,16 @@
 </script>
 
 <style>
+
+  div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: white;
+    border: 1px black solid;
+    border-radius: 4px;
+    pointer-events: none;
+  }
 
 </style>
