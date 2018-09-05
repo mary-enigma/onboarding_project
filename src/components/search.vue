@@ -118,6 +118,8 @@ export default {
        this.search = this.results[this.arrowCounter];
        this.isOpen = false;
        this.arrowCounter = -1;
+       this.setResult(this.search)
+       // debugger
      },
      handleClickOutside(evt) {
        if (!this.$el.contains(evt.target)) {

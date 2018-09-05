@@ -32,6 +32,13 @@
             title='First Dot Plot'
           ></dot-plot>
         </div>
+        <div class="dot-plot">
+            <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+            <bubble-chart
+              :dataModel='bubbleChartData'
+              title='Bubble Chart Data'
+            ></bubble-chart>
+          </div>
     </div>
   </div>
 </template>
@@ -40,6 +47,7 @@
   import axios from 'axios';
   import 'vue-resize/dist/vue-resize.css';
   import DotPlot from './d3/dotPlot.vue';
+  import BubbleChart from './d3/bubbleChart.vue';
   import Search from './search.vue';
   import * as d3 from "d3";
   import _ from 'lodash';
@@ -52,6 +60,7 @@
         loading: true,
         errored: false,
         dotPlot1Data: [],
+        bubbleChartData: [],
         fieldSearch: [{
           name: null,
           mens_earnings: null,
@@ -62,6 +71,7 @@
     },
     components: {
       'dot-plot': DotPlot,
+      'bubble-chart': BubbleChart,
       'autocomplete': Search
     },
     mounted(){
@@ -74,6 +84,7 @@
       .then(response => {
         var resp = response.data
         this.filterData(resp)
+        this.filterBubbleData(resp)
       })
       .catch(error => {
         console.log(error)
@@ -124,6 +135,29 @@
           {"name":"Chief executives","max":"141108","min":"103564"},{"name":"Financial managers","max":"100505","min":"62089"},{"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
         ]
       }
+      this.bubbleChartData = {
+            "children": [{"Name":"Olives","Count":4319},
+                {"Name":"Tea","Count":4159},
+                {"Name":"Mashed Potatoes","Count":2583},
+                {"Name":"Boiled Potatoes","Count":2074},
+                {"Name":"Milk","Count":1894},
+                {"Name":"Chicken Salad","Count":1809},
+                {"Name":"Vanilla Ice Cream","Count":1713},
+                {"Name":"Cocoa","Count":1636},
+                {"Name":"Lettuce Salad","Count":1566},
+                {"Name":"Lobster Salad","Count":1511},
+                {"Name":"Chocolate","Count":1489},
+                {"Name":"Apple Pie","Count":1487},
+                {"Name":"Orange Juice","Count":1423},
+                {"Name":"American Cheese","Count":1372},
+                {"Name":"Green Peas","Count":1341},
+                {"Name":"Assorted Cakes","Count":1331},
+                {"Name":"French Fried Potatoes","Count":1328},
+                {"Name":"Potato Salad","Count":1306},
+                {"Name":"Baked Potatoes","Count":1293},
+                {"Name":"Roquefort","Count":1273},
+                {"Name":"Stewed Prunes","Count":1268}]
+        };
 
     },
     methods: {
@@ -167,6 +201,18 @@
         // this.dotPlot1Data = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot1Data))
+      },
+      filterBubbleData(resp){
+        var bubbleData = this.info
+        var mappedBubble = []
+        bubbleData.map((val)=>{
+          var mappedData = {}
+          mappedData["name"] = val[0]
+          mappedData["percentage"] = val[16]
+          mappedBubble.push(mappedData)
+        })
+        // debugger
+        // this.bubbleChartData = mappedBubble;
       }
     },
     computed: {
