@@ -168,10 +168,10 @@
     	.attr("class", "tooltip")
     	.style("opacity", 0);
 
-    var posToColour = {
-      min: "#D770AD",
-      max: "#4A89DC"
-    };
+    // var posToColour = {
+    //   min: "#D770AD",
+    //   max: "#4A89DC"
+    // };
 
     var y = d3.scaleBand()
     	.range([0, height])
@@ -306,11 +306,11 @@
 
         div.transition()
         	.duration(100)
-        	.style("opacity", 0.9)
+        	.style("opacity", 1)
         div.html("$" + (selection.datum()[pos]))
           .style("left", (d3.event.pageX - 30) + "px")
           .style("top", (d3.event.pageY - 40) + "px")
-        	.style("background-color", posToColour[pos])
+        	.style("background-color", "rgba(0, 0, 0, 0.75)")
     }
 
     function moveLabel() {
@@ -418,11 +418,13 @@
   div.tooltip {
     position: absolute;
     text-align: center;
-    padding: 5px;
+    color: white;
+    padding: 8px;
     font: 12px sans-serif;
-    background: white;
-    border: 1px black solid;
-    border-radius: 4px;
+    /* background-color: rgba(0, 0, 0, 0.75); */
+    font: 12px sans-serif;
+    border-radius: 6px;
     pointer-events: none;
   }
+
 </style>
