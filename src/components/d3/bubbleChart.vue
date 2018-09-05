@@ -104,12 +104,16 @@
                 .attr("height", diameter)
                 .attr("class", "bubble");
 
-            var tooltip = d3.select("body")
-            	.append("div")
-            	.style("position", "absolute")
-            	.style("z-index", "10")
-            	.style("visibility", "hidden")
-            	.text("a simple tooltip");
+            // var tooltip = d3.select("body")
+            // 	.append("div")
+            // 	.style("position", "absolute")
+            // 	.style("z-index", "10")
+            // 	.style("visibility", "hidden")
+
+            // Define the div for the tooltip
+          var div = d3.select("body").append("div")
+              .attr("class", "tooltip")
+              .style("opacity", 0);
 
             var nodes = d3.hierarchy(data)
                 .sum(function(d) { return d.Count; });
@@ -129,8 +133,20 @@
 
             // node.append("title")
             //     .text(function(d) {
-            //         return d.Name + ": " + d.Count;
+            //         return d.data.Name + ": " + d.data.Count;
             //     });
+
+          var tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .style("color", "white")
+            .style("padding", "8px")
+            .style("background-color", "rgba(0, 0, 0, 0.75)")
+            .style("border-radius", "6px")
+            .style("font", "12px sans-serif")
+            .text("tooltip");
 
             node.append("circle")
                 .attr("r", function(d) {
@@ -139,9 +155,17 @@
                 .style("fill", function(d,i) {
                     return color(i);
                 })
-                .on("mouseover", function(){return tooltip.style("visibility", "visible");})
-                .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+                .on("mouseover", function(d) {
+                  tooltip.text(d.data.Name + ": " + d.data.Count);
+                  tooltip.style("visibility", "visible");
+                })
+                .on("mousemove", function() {
+                    return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+                })
                 .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+                // .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+                // .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+                // .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
             node.append("text")
                 .attr("dy", ".3em")
