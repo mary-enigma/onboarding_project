@@ -31,16 +31,16 @@
         }
     },
   	watch: {
-      dataModel: function(data) {
-  			// console.log('BarChart dataModel changed')
-  			if (this.internalData.length === 0) {
-  				this.update = false
-  			} else {
-  				this.update = true
-  			}
-        // debugger
-  			this.drawBubbleChart(data)
-  		}
+      // dataModel: function(data) {
+  		// 	// console.log('BarChart dataModel changed')
+  		// 	if (this.internalData.length === 0) {
+  		// 		this.update = false
+  		// 	} else {
+  		// 		this.update = true
+  		// 	}
+      //   // debugger
+  		// 	this.drawBubbleChart(data)
+  		// }
   	},
     mounted: function() {
       // debugger
@@ -56,6 +56,12 @@
         this._props.dataModel,
         this._props.propID
       ) : null
+// debugger
+
+      //   setTimeout(function(){
+      //     this.drawBubbleChart(this._props.dataModel,
+      //   this._props.propID);
+      // }, 5000);
 
   	},
     destroyed() {
@@ -66,17 +72,30 @@
       resizeSVG: function(){
         this.dataModel.length !== 0 ? this.drawBubbleChart() : null;
       },
+
       //draws the visualization
       drawBubbleChart: function (
         data = this.dataModel,
         id = this._props.propID
       ) {
-        debugger
-            var diameter = 600;
+        // debugger
+            var diameter = 960;
+            var height = 800;
             var color = d3.scaleOrdinal(d3.schemeCategory10);
+            // var w = 500;
+            // var h = 100;
+            var scaleRadius = d3.scaleLinear()
+              .domain(d3.extent(data.children, function(d){
+                // debugger
+                  return d.Count
+                }))
+                .range([100, -20]);
+
+            // var rScale = d3.scaleLog();
+            // rScale.domain([1, 100]).range([1, 600])
 
             var bubble = d3.pack(data)
-                .size([diameter, diameter])
+                .size([diameter, height])
                 .padding(1.5);
 
             var svg = d3.select("body")
@@ -98,16 +117,23 @@
                 .attr("class", "node")
                 .attr("transform", function(d) {
                     return "translate(" + d.x + "," + d.y + ")";
-                });
+                })
+
+              // var scale = d3.scaleLinear().domain([50, 98]).range([50, 98]);
 
             node.append("title")
                 .text(function(d) {
                     return d.Name + ": " + d.Count;
                 });
 
+                // var radius = "70px"
             node.append("circle")
+              // .attr("r", 100)
                 .attr("r", function(d) {
-                    return d.r;
+                  // debugger
+                  // return d.radius
+                    // return d.r;
+                    return scaleRadius(d.r)
                 })
                 .style("fill", function(d,i) {
                     return color(i);
