@@ -96,7 +96,7 @@
         var element = $(selection_string);
 
         //make margins and svg
-    		var margin = {top: 20, right: 60, bottom: 30, left: 40},
+    		var margin = {top: 120, right: 100, bottom: 50, left: 400},
             width = element.width() - margin.left - margin.right,
             height = element.height() - margin.top - margin.bottom;
         // var width = 800 - margin.left - margin.right,
