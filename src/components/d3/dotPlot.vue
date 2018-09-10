@@ -97,7 +97,7 @@
         //make margins and svg
     		var margin = {top: 120, right: 100, bottom: 50, left: 150};
 
-        var width = 960 - margin.left - margin.right,
+        var width = 800 - margin.left - margin.right,
         		height = 500 - margin.top - margin.bottom;
 
         var svg = d3.select("body").append("svg")
@@ -208,7 +208,7 @@
     var plotData;
 
     // var url = "https://raw.githubusercontent.com/tlfrd/pay-ratios/master/data/payratio.json"
-    plotData = data.plot1;
+    plotData = data.children;
 // debugger
       // use -1 to flip ordering
       // debugger
@@ -387,10 +387,6 @@
   .selection-line {
     stroke: black;
     stroke-dasharray: 5,5;
-  }
-
-  .hover-label {
-    background-color: blue;
   }
 
   .lollipop-line {

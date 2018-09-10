@@ -75,7 +75,7 @@
 
     //mock data until I get stuff working
       this.dotPlot1Data = {
-        "plot1": [
+        "children": [
           {"name":"Chief executives","max":"141108","min":"103564"},{"name":"Financial managers","max":"100505","min":"62089"},{"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
         ]
       }
@@ -133,6 +133,23 @@
         })
         // debugger
         this.mapFilteredData(result);
+      },
+      filterDotPlot2Data(data){
+        //choose selected fields for the first dot plot
+        var filteredWomensFields =
+        ["Preschool and kindergarten teachers", "Registered nurses", "Nursing, psychiatric, and home health aides", "Customer service representatives", "Cashiers", "Accountants and auditors", "Receptionists and information clerks", "Retail salespersons", "Maids and housekeeping cleaners", "Social workers"]
+
+        // filter by these fields
+        var result = data.filter((e)=>{
+          return filteredWomensFields.includes(e[0])
+        })
+        // debugger
+        this.mapFilteredData(result);
+      },
+      filterDotPlot3Data(data){
+        var filteredMensFields =
+        ["Driver/sales workers and truck drivers", "First-line supervisors of retail sales workers", "Laborers and freight, stock, and material movers, hand", "Construction laborers", "Janitors and building cleaners", "Software developers, applications and systems software", "Sales representatives, wholesale and manufacturing", "Grounds maintenance workers", "Cooks", "Carpenters"]
+
       },
       //map data to object so we can make graph
       mapFilteredData(data){
