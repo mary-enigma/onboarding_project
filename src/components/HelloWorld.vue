@@ -1,9 +1,6 @@
 <template>
   <div class=main>
-    <div class="hello">
-      <p>something</p>
-      <p>somthing else</p>
-      <!-- {{ info }} -->
+    <div class="explore-data">
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
@@ -17,6 +14,8 @@
           <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
           <dot-plot
             :dataModel='dotPlot1Data'
+            propID="dotPlot1"
+
             title='First Dot Plot'
           ></dot-plot>
       </div>
@@ -24,6 +23,7 @@
           <h2>Selected Fields Employing 75% or More Women</h2>
           <dot-plot
             :dataModel='dotPlot2Data'
+            propID="dotPlot2"
             title='Second Dot Plot'
           ></dot-plot>
       </div>
@@ -31,6 +31,7 @@
           <h2>Selected Fields Employing 75% Or More Men</h2>
           <dot-plot
             :dataModel='dotPlot3Data'
+            propID="dotPlot3"
             title='Third Dot Plot'
           ></dot-plot>
       </div>
@@ -41,6 +42,14 @@
             title='Bubble Chart Data'
           ></bubble-chart>
       </div>
+
+      <!-- <div class="test-div">
+          <h2>test</h2>
+          <dot-plot
+            :dataModel='dotPlot1'
+              propID="dotPlot3"
+          ></dot-plot>
+      </div> -->
     </div>
   </div>
 </template>
@@ -264,5 +273,11 @@
   }
   a {
     color: #42b983;
+  }
+  .dot-plot {
+    height: 500px;
+  }
+  .explore-data {
+    font-size: 16px;
   }
 </style>

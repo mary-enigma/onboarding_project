@@ -49,19 +49,10 @@
   				this.update = true
   			}
         // debugger
-  			this.drawDotPlot(data)
+  			this.drawDotPlot(data, this.propID)
   		}
   	},
     mounted: function() {
-      // debugger
-      // setTimeout(function(){
-      //   this.dataModel.length !== 0 ? this.drawDotPlot(
-      //   this._props.dataModel,
-      //   this._props.propID,
-      //   this._props.yaxisLabel,
-      //   this._props.xaxisLabel
-      // ) : null }, 100000000);
-      // debugger
   		this.dataModel.length !== 0 ? this.drawDotPlot(
         this._props.dataModel,
         this._props.propID,
@@ -86,26 +77,38 @@
         xAxisLabel = this._props.xaxisLabel
       ) {
         // debugger
-        var hoverLine = true;
 
         d3.select(".sort-by")
-        	.on("change", function() {
-          	var attribute = d3.select(this).property("value");
-          	sortLollipops(attribute, 1);
-        	});
+        .on("change", function() {
+          var attribute = d3.select(this).property("value");
+          sortLollipops(attribute, 1);
+        });
+
+        // var hoverLine = true;
+
+        //place chart in correct div on main page
+        let selection_string = "#" + id;
+        if($(selection_string + " svg") != null) {
+          $(selection_string + " svg").remove();
+        }
+        // d3.selectAll(`.${this.propID}_tooltip`).remove()
+
+        var element = $(selection_string);
 
         //make margins and svg
-    		var margin = {top: 120, right: 100, bottom: 50, left: 150};
+    		var margin = {top: 20, right: 60, bottom: 30, left: 40},
+            width = element.width() - margin.left - margin.right,
+            height = element.height() - margin.top - margin.bottom;
+        // var width = 800 - margin.left - margin.right,
+        // 		height = 500 - margin.top - margin.bottom;
 
-        var width = 800 - margin.left - margin.right,
-        		height = 500 - margin.top - margin.bottom;
-
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select(selection_string).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+            // debugger
         //sorts the data by max (men's) earnings
         function sortBy(data, attribute, order) {
         	data.sort(function(a, b) {
@@ -164,7 +167,7 @@
     	.text(function(d) { return d.label });
 
     // Append div
-    var div = d3.select("body").append("div")
+    var div = d3.select("selection_string").append("div")
     	.attr("class", "tooltip")
     	.style("opacity", 0);
 
@@ -326,7 +329,7 @@
      	selectionLine
       	.attr("opacity", 0);
     }
-
+// debugger
     function sortLollipops(attribute, ordering) {
       // debugger
       sortBy(plotData, attribute, 1);
