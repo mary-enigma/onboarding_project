@@ -19,14 +19,21 @@
             :dataModel='dotPlot1Data'
             title='First Dot Plot'
           ></dot-plot>
-        </div>
-        <div class="dot-plot">
-            <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
-            <bubble-chart
-              :dataModel='bubbleChartData'
-              title='Bubble Chart Data'
-            ></bubble-chart>
-          </div>
+      </div>
+      <div class="dot-plot">
+          <h2>Fields Employing Mostly Women</h2>
+          <dot-plot
+            :dataModel='dotPlot2Data'
+            title='Second Dot Plot'
+          ></dot-plot>
+      </div>
+      <div class="bubble-chart">
+          <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+          <bubble-chart
+            :dataModel='bubbleChartData'
+            title='Bubble Chart Data'
+          ></bubble-chart>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +55,7 @@
         loading: true,
         errored: false,
         dotPlot1Data: [],
+        dotPlot2Data: [],
         bubbleChartData: []
       }
     },
@@ -73,10 +81,16 @@
       })
       .finally(() => this.loading = false)
 
-    //mock data until I get stuff working
+    //hard-coded data until I get stuff working
       this.dotPlot1Data = {
         "children": [
           {"name":"Chief executives","max":"141108","min":"103564"},{"name":"Financial managers","max":"100505","min":"62089"},{"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
+        ]
+      }
+
+      this.dotPlot2Data = {
+        "children":[
+          {"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Social workers","max":"44973","min":"44603"},{"name":"Preschool and kindergarten teachers","max":"29102","min":"25021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Maids and housekeeping cleaners","max":"25788","min":"21000"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Receptionists and information clerks","max":"29582","min":"28444"}
         ]
       }
       // this.bubbleChartData = {
@@ -110,22 +124,20 @@
     },
     methods: {
 
-      //filters out metadata
+      //filters out metadata and runs functions
       filterData: function(resp){
         let filteredData = resp.table_rows.rows
         this.info = filteredData
         this.filterDotPlot1Data(this.info)
+        this.filterDotPlot2Data(this.info)
         this.filterBubbleData(this.info)
         // debugger
         return this.info
       },
       filterDotPlot1Data: function(data){
-
         //choose selected fields for the first dot plot
         var filteredValues =
         ["Driver/sales workers and truck drivers", "First-line supervisors of retail sales workers", "Elementary and middle school teachers", "Registered nurses", "Secretaries and administrative assistants", "Customer service representatives", "Retail salespersons", "Accountants and auditors", "Janitors and building cleaners", "Laborers and freight, stock, and material movers, hand", "Nursing, psychiatric, and home health aides", "Cooks", "First-line supervisors of office and administrative support workers", "Sales representatives, wholesale and manufacturing", "Construction laborers", "Software developers, applications and systems software", "First-line supervisors of non-retail sales workers", "Chief executives", "Financial managers", "Cashiers"]
-
-        // ["Chief executives", "Legislators", "Marketing and sales managers", "Human resources managers", "Medical and health services managers", "Human resources workers", "Financial analysts", "Software developers, applications and systems software", "Web developers", "Actuaries", "Civil engineers", "Electrical and electronics engineers", "Materials engineers", "Medical scientists", "Economists", "Psychologists", "Social workers", "Dental assistants", "Waiters and waitresses"]
 
         // filter by these fields
         var result = data.filter((e)=>{
@@ -144,7 +156,7 @@
           return filteredWomensFields.includes(e[0])
         })
         // debugger
-        this.mapFilteredData(result);
+        this.mapFilteredData2(result);
       },
       filterDotPlot3Data(data){
         var filteredMensFields =
@@ -162,11 +174,26 @@
           mappedDotPlot1.push(mappedData)
         })
         var mappedDataObj = {}
-        mappedDataObj["plot1"] = mappedDotPlot1
-        //[{},{},{}]
+        mappedDataObj["children"] = mappedDotPlot1
+
         // this.dotPlot1Data = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot1Data))
+      },
+      mapFilteredData2(data){
+        var mappedDotPlot2 = []
+        data.map((val)=>{
+          var mappedData = {}
+          mappedData["name"] = val[0]
+          mappedData["max"] = val[12]
+          mappedData["min"] = val[14]
+          mappedDotPlot2.push(mappedData)
+        })
+        var mappedDataObj = {}
+        mappedDataObj["children"] = mappedDotPlot2
+        // this.dotPlot2Data = mappedDataObj
+        // debugger
+        // console.log(JSON.stringify(this.dotPlot2Data))
       },
       filterBubbleData(data){
         // debugger
@@ -191,11 +218,12 @@
       }
     },
     computed: {
+      //filtered search
       fetchInput(){
         console.log(this.info)
         var self = this;
         return this.info.filter((item)=>{
-          debugger
+          // debugger
           return item[0].indexOf(self.searchTerm.toLowerCase())>=0;
           // return item.name.toLowerCase().indexOf(self.searchTerm.toLowerCase())>=0;
         })
