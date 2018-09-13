@@ -4,21 +4,34 @@
       <h1>Exploring the Gender Pay Gap Through Public Data</h1>
     </div>
     <div class="intro">
-      This is a paragraph about the wage gap.
+      <p>
+        Nearly every occupation in the United States (96.5%) experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents on every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, whereas architectural and engineering managers experience almost no gap (99.9%).
+      </br>
+      This project explores the gender wage gap by occupation through reporting earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
+
+      </p>
     </div>
     <div class="explore-data">
-      <section v-if="errored">
-        <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
-    </section>
+
+    <div>
+      <h3>About the Data</h3>
+      <p>
+        The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered/work performed between men and women.
+      </p>
+    </div>
     <h2>Explore the Data</h2>
     <p>
-      This data, from the 2016 American Community Survey,
+      Enter a field to see median earnings by men and women, as well as the pay gap for that field.
     </p>
     <autocomplete
       :items="info"
     ></autocomplete>
     </div>
+
     <div class="charts">
+      <section v-if="errored">
+        <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
+    </section>
       <div class="dot-plot">
           <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
           <dot-plot
@@ -26,7 +39,12 @@
             propID="dotPlot1"
           ></dot-plot>
       </div>
-
+      <div class="text">
+        <h3>The Complexity of the Gender Wage Gap</h3>
+        <p>
+          Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men. 
+        </p>
+      </div>
       <div class="dot-plot">
           <h2>Selected Fields Employing 75% Or More Men</h2>
           <dot-plot
