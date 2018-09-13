@@ -1,26 +1,27 @@
 <template>
-  <div class=main>
-    <div class = "title">
-      <h1>Exploring the Gender Pay Gap Through Public Data</h1>
-    </div>
+  <div class="container">
     <div class="intro">
-      <p>
-        Nearly every occupation in the United States (96.5%) experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents on every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, whereas architectural and engineering managers experience almost no gap (99.9%).
-      </br>
-      This project explores the gender wage gap by occupation through reporting earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
-
-      </p>
-    </div>
+      <div class = "intro-title">
+        <h1>Exploring the Gender Pay Gap Through Public Data</h1>
+      </div>
+      <div class="intro-text">
+        <p>
+          Nearly every occupation in the United States (96.5%) experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents on every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, whereas architectural and engineering managers experience almost no gap (99.9%).
+        </br>
+        This project explores the gender wage gap by occupation through reporting earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
+        </p>
+      </div>
+  </div>
+  <div class="dot-plot1">
+    <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
     <div class="dot-plot">
-        <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
-        <dot-plot
-          :dataModel='dotPlot1Data'
-          propID="dotPlot1"
-        ></dot-plot>
+      <dot-plot
+        :dataModel='dotPlot1Data'
+        propID="dotPlot1"
+      ></dot-plot>
     </div>
-
-    <div class="explore-data">
-
+  </div>
+  <div class="explore-data">
     <div>
       <h3>About the Data</h3>
       <p>
@@ -34,50 +35,41 @@
     <autocomplete
       :items="info"
     ></autocomplete>
-    </div>
-    <div class="bubble-chart">
-        <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
-        <bubble-chart
-          :dataModel='bubbleChartData'
-          title='Bubble Chart Data'
-        ></bubble-chart>
-    </div>
-    <div class="charts">
+  </div>
+  <div class="bubble-chart">
+      <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+      <bubble-chart
+        :dataModel='bubbleChartData'
+        title='Bubble Chart Data'
+      ></bubble-chart>
+  </div>
+
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
 
-    <div class="text">
-      <h3>The Complexity of the Gender Wage Gap</h3>
-      <p>
-        Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
-      </p>
-    </div>
-      <div class="dot-plot">
-          <h2>Selected Fields Employing 75% Or More Men</h2>
-          <dot-plot
-            :dataModel='dotPlot3Data'
-            propID="dotPlot3"
-          ></dot-plot>
+    <div class="comparison">
+      <div class="text">
+        <h3>The Complexity of the Gender Wage Gap</h3>
+        <p>
+          Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
+        </p>
       </div>
       <div class="dot-plot">
-          <h2>Selected Fields Employing 75% or More Women</h2>
-          <dot-plot
-            :dataModel='dotPlot2Data'
-            propID="dotPlot2"
-            :xAxisRange='110'
-          ></dot-plot>
+        <h2>Selected Fields Employing 75% Or More Men</h2>
+        <dot-plot
+          :dataModel='dotPlot3Data'
+          propID="dotPlot3"
+        ></dot-plot>
       </div>
-
-
-
-      <!-- <div class="test-div">
-          <h2>test</h2>
-          <dot-plot
-            :dataModel='dotPlot1'
-              propID="dotPlot3"
-          ></dot-plot>
-      </div> -->
+      <div class="dot-plot">
+        <h2>Selected Fields Employing 75% or More Women</h2>
+        <dot-plot
+          :dataModel='dotPlot2Data'
+          propID="dotPlot2"
+          :xAxisRange='110'
+        ></dot-plot>
+      </div>
     </div>
   </div>
 </template>
@@ -287,7 +279,36 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+
+  .container {
+    display: grid;
+    grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
+    grid-template-rows: auto;
+    grid-row-gap: 20px;
+    grid-template-areas:
+      "intro intro intro intro"
+      " . dot1 dot1 . "
+      " . explore explore . "
+      " . compare compare . ";
+  }
+
+  .intro {
+    grid-area: intro;
+  }
+  .dot-plot1 {
+    grid-area: dot1;
+  }
+  .explore-data {
+    grid-area: explore;
+  }
+  .bubble-chart {
+    grid-area: bubble;
+  }
+  .comparison {
+    grid-area: compare;
+  }
+
   h1, h2 {
     font-weight: normal;
   }
@@ -308,4 +329,5 @@
   .explore-data {
     font-size: 16px;
   }
+
 </style>
