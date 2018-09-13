@@ -34,6 +34,9 @@
         The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered/work performed between men and women.
       </p>
     </div>
+    <div class="pay-graphic">
+      <img src="../assets/images/pay-graphic.jpg" width="80%" class="graphic">
+    </div>
     <div class="explore-data">
       <h2>Explore the Data</h2>
       <p>
@@ -297,7 +300,7 @@
     grid-template-areas:
       "intro intro intro intro"
       " . dot1 dot1 . "
-      " . about . . "
+      " . about graphic . "
       " . explore explore . "
       " . bubble bubble . "
       " . compare compare . ";
@@ -353,6 +356,9 @@
     grid-area: about;
     margin-top: 25px;
     margin-bottom: 20px;
+  }
+  .pay-graphic {
+    grid-area: graphic;
   }
   .explore-data {
     grid-area: explore;
