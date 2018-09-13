@@ -11,7 +11,7 @@
             Nearly every occupation in the United States experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents for every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, while architectural and engineering managers experience almost no gap (99.9%).
           </br>
           </br>
-          This project explores the gender wage gap by occupation through reported earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
+          This project explores the gender wage gap by occupation through reported earnings by gender using data from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
           </p>
           <div style="margin-top: 30px">
             <v-btn class="intro-btn"><a href="https://public.enigma.com/datasets/full-time-year-round-workers-and-median-earnings-in-the-past-12-months-by-sex-and-detailed-occupation-2016/3616bd60-2fec-4cf6-99a3-477dae4afbb9" style="text-decoration: none; color:black">View the data</a></v-btn>
@@ -20,7 +20,7 @@
       </div>
   </div>
   <div class="dot-plot1">
-    <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
+    <h2 class="dot1-title">Men's Earnings Compared to Women's for Selected Common Occupations</h2>
     <div class="dot-plot">
       <dot-plot
         :dataModel='dotPlot1Data'
@@ -28,20 +28,20 @@
       ></dot-plot>
     </div>
   </div>
-  <div class="explore-data">
-    <div>
-      <h3>About the Data</h3>
-      <p>
+    <div class="about">
+      <h3 style="font-size: 20px;">About the Data</h3>
+      <p class="about-text">
         The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered/work performed between men and women.
       </p>
     </div>
-    <h2>Explore the Data</h2>
-    <p>
-      Enter a field to see median earnings by men and women, as well as the pay gap for that field.
-    </p>
-    <autocomplete
-      :items="info"
-    ></autocomplete>
+    <div class="explore-data">
+      <h2>Explore the Data</h2>
+      <p>
+        Enter a field to see median earnings by men and women, as well as the pay gap for that field.
+      </p>
+      <autocomplete
+        :items="info"
+      ></autocomplete>
   </div>
   <div class="bubble-chart">
     <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
@@ -297,6 +297,7 @@
     grid-template-areas:
       "intro intro intro intro"
       " . dot1 dot1 . "
+      " . about . . "
       " . explore explore . "
       " . bubble bubble . "
       " . compare compare . ";
@@ -335,8 +336,23 @@
   .intro a {
     color: #7173a9;
   }
+  .about-text {
+    font-size: 16px;
+    text-align: left;
+    margin-top: 10px;
+    margin: 10px 15px 10px 15px;
+  }
+  .dot1-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
   .dot-plot1 {
     grid-area: dot1;
+  }
+  .about {
+    grid-area: about;
+    margin-top: 25px;
+    margin-bottom: 20px;
   }
   .explore-data {
     grid-area: explore;
@@ -369,7 +385,7 @@
     font-size: 16px;
   }
   .intro-image {
-    /* opacity: .6 */
+    /* opacity: .9 */
   }
 
 </style>
