@@ -10,6 +10,10 @@
         </br>
         This project explores the gender wage gap by occupation through reporting earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
         </p>
+        <div>
+          <v-btn>Explore the raw data</v-btn>
+        </div>
+
       </div>
   </div>
   <div class="dot-plot1">
@@ -41,7 +45,6 @@
     <div>
       <bubble-chart
         :dataModel='bubbleChartData'
-        title='Bubble Chart Data'
         propID="bubbleChart"
       ></bubble-chart>
     </div>
