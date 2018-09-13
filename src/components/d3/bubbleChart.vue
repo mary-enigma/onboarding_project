@@ -81,7 +81,7 @@
         // debugger
             var diameter = 960;
             var height = 800;
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
+            var color = d3.scaleOrdinal(d3.schemeSet3);
             // var w = 500;
             // var h = 100;
             var scaleRadius = d3.scaleLinear()
@@ -183,7 +183,7 @@
                     var text = longText.split(" ")[0].replace( /,/g, "" );
                     return text
                 })
-                .attr("fill", "white");
+                .attr("fill", "black");
 
             node.append("text")
                 .attr("dy", "1.3em")
@@ -195,7 +195,7 @@
                 .attr("font-size", function(d){
                     return d.r/2;
                 })
-                .attr("fill", "white");
+                .attr("fill", "black");
 
             d3.select(self.frameElement)
                 .style("height", diameter + "px");
