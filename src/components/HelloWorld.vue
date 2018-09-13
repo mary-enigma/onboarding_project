@@ -31,30 +31,30 @@
     <div class="about">
       <h3 style="font-size: 20px;">About the Data</h3>
       <p class="about-text">
-        The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered/work performed between men and women.
+        The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered or work performed between men and women.
       </p>
     </div>
     <div class="pay-graphic">
-      <img src="../assets/images/pay-graphic.jpg" width="80%" class="graphic">
+      <img src="../assets/images/pay-graphic.jpg" width="75%" class="graphic">
     </div>
     <div class="explore-data">
-      <h2>Explore the Data</h2>
-      <p>
+      <h2 class="explore-title">Explore the Data</h2>
+      <p class="explore-text">
         Enter a field to see median earnings by men and women, as well as the pay gap for that field.
       </p>
       <autocomplete
         :items="info"
       ></autocomplete>
-  </div>
-  <div class="bubble-chart">
-    <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
-    <div>
-      <bubble-chart
-        :dataModel='bubbleChartData'
-        propID="bubbleChart"
-      ></bubble-chart>
     </div>
-  </div>
+    <div class="bubble-chart">
+      <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+      <div>
+        <bubble-chart
+          :dataModel='bubbleChartData'
+          propID="bubbleChart"
+        ></bubble-chart>
+      </div>
+    </div>
 <!--
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
@@ -301,7 +301,7 @@
       "intro intro intro intro"
       " . dot1 dot1 . "
       " . about graphic . "
-      " . explore explore . "
+      " explore explore explore explore "
       " . bubble bubble . "
       " . compare compare . ";
   }
@@ -349,20 +349,31 @@
     font-size: 24px;
     margin-bottom: 20px;
   }
+  .explore-data {
+    grid-area: explore;
+    background-color: #de93be;
+  }
+  .explore-title {
+    margin-top: 2%;
+    font-size: 28px;
+    color: white;
+    font-weight: 900;
+  }
+  .explore-text {
+    font-size: 14px;
+    color: white;
+  }
   .dot-plot1 {
     grid-area: dot1;
   }
   .about {
     grid-area: about;
-    margin-top: 25px;
-    margin-bottom: 20px;
+    margin: 10% 0px 20px 20px;
   }
   .pay-graphic {
     grid-area: graphic;
   }
-  .explore-data {
-    grid-area: explore;
-  }
+
   .bubble-chart {
     grid-area: bubble;
   }
@@ -387,9 +398,6 @@
   /* .bubble-chart {
     height: 600px;
   } */
-  .explore-data {
-    font-size: 16px;
-  }
   .intro-image {
     /* opacity: .9 */
   }

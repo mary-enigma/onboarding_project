@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="autocomplete">
-      <label>Search for a field (example: accountant):</label>
+      <label class="search-text">Search for a field (example: accountant):</label>
         <input
           type="text"
           @input="onChange"
@@ -9,6 +9,7 @@
           @keydown.down="onArrowDown"
           @keydown.up="onArrowUp"
           @keydown.enter="onEnter"
+          class="input-box"
         />
         <ul
           id="autocomplete-results"
@@ -34,10 +35,10 @@
         </ul>
     </div>
     <div class="display-results">
-      <p>
+      <p class="search-text" style="font-size: 20px;">
         Result:
       </p>
-      <p>
+      <p class="result-text">
         Field Name: {{ displayItem[0] }} </br>
         Median earnings men: {{ displayItem[12] }} </br>
         Median earnings women: {{ displayItem[14] }} </br>
@@ -180,6 +181,22 @@ export default {
   .autocomplete-result:hover {
     background-color: #D770AD;
     color: white;
+  }
+  .search-text {
+    color: white;
+  }
+  .result-text {
+    color: white;
+    font-size: 16px;
+  }
+  .input-box {
+    padding: 6px 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #faeff5;
   }
 
 </style>
