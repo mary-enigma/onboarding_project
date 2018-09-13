@@ -47,7 +47,7 @@
       ></autocomplete>
     </div>
     <div class="bubble-chart">
-      <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+      <h2 style="font-size:24px;">Women's Earnings As A Percentage of Men's Earnings By General Field</h2>
       <div>
         <bubble-chart
           :dataModel='bubbleChartData'
@@ -59,11 +59,13 @@
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section> -->
-
+    <div class="lightbulb-graphic">
+      <img src="../assets/images/lightbulb-graphic.jpg" width="100%" class="graphic">
+    </div>
     <div class="comparison">
-      <div class="text">
-        <h3>The Complexity of the Gender Wage Gap</h3>
-        <p>
+      <div class="comparison-text">
+        <h2 style="font-size: 24px;">The Complexity of the Gender Wage Gap</h2>
+        <p class="comparison-text">
           Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
         </p>
       </div>
@@ -82,6 +84,14 @@
           :xAxisRange='110'
         ></dot-plot>
       </div>
+    </div>
+    <div class="footer">
+      <p>
+        About Enigma Public
+      </p>
+      <p>
+        About This Project: Made by Mary Boyd.
+      </p>
     </div>
   </div>
 </template>
@@ -303,7 +313,9 @@
       " . about graphic . "
       " explore explore explore explore "
       " . bubble bubble . "
-      " . compare compare . ";
+      "lightbulb lightbulb lightbulb lightbulb"
+      " . compare compare . "
+      "footer footer footer footer";
   }
 
   .intro {
@@ -379,6 +391,20 @@
   }
   .comparison {
     grid-area: compare;
+  }
+  .comparison-text {
+    font-size: 16px;
+    margin-top: 10px;
+    margin: 10px 15px 10px 15px;
+  }
+  .footer {
+    grid-area: footer;
+    background-color: #3F9994;
+    color: white;
+  }
+  .lightbulb-graphic {
+    grid-area: lightbulb;
+    opacity: .8;
   }
 
   /* ul {
