@@ -1,19 +1,22 @@
 <template>
-  <div class="container">
+  <div class="main">
     <div class="intro">
-      <div class = "intro-title">
-        <h1>Exploring the Gender Pay Gap Through Public Data</h1>
-      </div>
-      <div class="intro-text">
-        <p>
-          Nearly every occupation in the United States (96.5%) experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents on every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, whereas architectural and engineering managers experience almost no gap (99.9%).
-        </br>
-        This project explores the gender wage gap by occupation through reporting earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
-        </p>
-        <div>
-          <v-btn>Explore the raw data</v-btn>
+      <img src="../assets/images/intro-image.jpg" width="100%" class="intro-image">
+      <div class="inner-intro">
+        <div class="intro-title">
+          <h1>Exploring the Gender Pay Gap Through Public Data</h1>
         </div>
-
+        <div class="intro-text">
+          <p>
+            Nearly every occupation in the United States experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents for every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, while architectural and engineering managers experience almost no gap (99.9%).
+          </br>
+          </br>
+          This project explores the gender wage gap by occupation through reported earnings by gender from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
+          </p>
+          <div style="margin-top: 30px">
+            <v-btn class="intro-btn"><a href="https://public.enigma.com/datasets/full-time-year-round-workers-and-median-earnings-in-the-past-12-months-by-sex-and-detailed-occupation-2016/3616bd60-2fec-4cf6-99a3-477dae4afbb9" style="text-decoration: none; color:black">View the data</a></v-btn>
+          </div>
+        </div>
       </div>
   </div>
   <div class="dot-plot1">
@@ -87,7 +90,6 @@
   import BubbleChart from './d3/bubbleChart.vue';
   import Search from './search.vue';
   import * as d3 from "d3";
-  import _ from 'lodash';
 
   export default {
     name: 'HelloWorld',
@@ -287,7 +289,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
-  .container {
+  .main {
     display: grid;
     grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
     grid-template-rows: auto;
@@ -302,6 +304,36 @@
 
   .intro {
     grid-area: intro;
+    position: relative;
+  }
+  .inner-intro {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 500px;
+  }
+  .intro-title {
+    font-size: 30px;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+  }
+  .intro-text {
+    margin-top: 50px;
+    font-size: 16px;
+    color: white;
+    text-align: left;
+    font-weight: 500;
+    /* left: 40px; */
+    /* text-align: left; */
+  }
+  .intro-btn {
+    width: 200px;
+    background-color: #B4E0E9!important;
+    color: white
+  }
+  .intro a {
+    color: #7173a9;
   }
   .dot-plot1 {
     grid-area: dot1;
@@ -316,10 +348,7 @@
     grid-area: compare;
   }
 
-  h1, h2 {
-    font-weight: normal;
-  }
-  ul {
+  /* ul {
     list-style-type: none;
     padding: 0;
   }
@@ -329,7 +358,7 @@
   }
   a {
     color: #42b983;
-  }
+  } */
   .dot-plot {
     height: 500px;
   }
@@ -338,6 +367,9 @@
   } */
   .explore-data {
     font-size: 16px;
+  }
+  .intro-image {
+    /* opacity: .6 */
   }
 
 </style>
