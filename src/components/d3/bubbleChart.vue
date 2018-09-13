@@ -79,6 +79,9 @@
         id = this._props.propID
       ) {
         // debugger
+
+          let selection_string = "#" + id;
+
             var diameter = 960;
             var height = 800;
             var color = d3.scaleOrdinal(d3.schemeSet3);
@@ -98,7 +101,7 @@
                 .size([diameter, height])
                 .padding(.5);
 
-            var svg = d3.select("body")
+            var svg = d3.select(selection_string)
                 .append("svg")
                 .attr("width", diameter)
                 .attr("height", diameter)

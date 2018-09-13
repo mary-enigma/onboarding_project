@@ -11,6 +11,14 @@
 
       </p>
     </div>
+    <div class="dot-plot">
+        <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
+        <dot-plot
+          :dataModel='dotPlot1Data'
+          propID="dotPlot1"
+        ></dot-plot>
+    </div>
+
     <div class="explore-data">
 
     <div>
@@ -27,24 +35,24 @@
       :items="info"
     ></autocomplete>
     </div>
-
+    <div class="bubble-chart">
+        <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+        <bubble-chart
+          :dataModel='bubbleChartData'
+          title='Bubble Chart Data'
+        ></bubble-chart>
+    </div>
     <div class="charts">
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
-      <div class="dot-plot">
-          <h2>Men's Earnings Compared to Women's for the Most Popular Fields</h2>
-          <dot-plot
-            :dataModel='dotPlot1Data'
-            propID="dotPlot1"
-          ></dot-plot>
-      </div>
-      <div class="text">
-        <h3>The Complexity of the Gender Wage Gap</h3>
-        <p>
-          Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men. 
-        </p>
-      </div>
+
+    <div class="text">
+      <h3>The Complexity of the Gender Wage Gap</h3>
+      <p>
+        Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
+      </p>
+    </div>
       <div class="dot-plot">
           <h2>Selected Fields Employing 75% Or More Men</h2>
           <dot-plot
@@ -52,7 +60,6 @@
             propID="dotPlot3"
           ></dot-plot>
       </div>
-
       <div class="dot-plot">
           <h2>Selected Fields Employing 75% or More Women</h2>
           <dot-plot
@@ -62,13 +69,7 @@
           ></dot-plot>
       </div>
 
-      <div class="bubble-chart">
-          <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
-          <bubble-chart
-            :dataModel='bubbleChartData'
-            title='Bubble Chart Data'
-          ></bubble-chart>
-      </div>
+
 
       <!-- <div class="test-div">
           <h2>test</h2>
