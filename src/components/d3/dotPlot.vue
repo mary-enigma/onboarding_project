@@ -22,18 +22,14 @@
         type: Object,
         default: ()=>{return {}}
       },
-      xaxisLabel: {
-    		 type: String,
-    		 default: ''
-      },
-      yaxisLabel: {
-    		 type: String,
-    		 default: ''
-  	  },
       propID: {
     		 type: String,
     		 default: 'dotplot'
-  	  }
+  	  },
+      xAxisRange: {
+        type: Number,
+        default: null
+      }
     },
     data: function() {
         return {
@@ -56,8 +52,7 @@
   		this.dataModel.length !== 0 ? this.drawDotPlot(
         this._props.dataModel,
         this._props.propID,
-        this._props.yaxisLabel,
-        this._props.xaxisLabel
+        this._props.xAxisRange
       ) : null
 
   	},
@@ -73,30 +68,23 @@
       drawDotPlot: function (
         data = this.dataModel,
         id = this._props.propID,
-        yAxisLabel = this._props.yaxisLabel,
-        xAxisLabel = this._props.xaxisLabel
+        xrange = this._props.xAxisRange
       ) {
         // debugger
-
-        d3.select(".sort-by")
-        .on("change", function() {
-          var attribute = d3.select(this).property("value");
-          sortLollipops(attribute, 1);
-        });
 
         // var hoverLine = true;
 
         //place chart in correct div on main page
         let selection_string = "#" + id;
-        if($(selection_string + " svg") != null) {
-          $(selection_string + " svg").remove();
-        }
+        // if($(selection_string + " svg") != null) {
+        //   $(selection_string + " svg").remove();
+        // }
         // d3.selectAll(`.${this.propID}_tooltip`).remove()
 
         var element = $(selection_string);
 
         //make margins and svg
-    		var margin = {top: 120, right: 100, bottom: 50, left: 400},
+    		var margin = {top: 70, right: 100, bottom: 50, left: 400},
             width = element.width() - margin.left - margin.right,
             height = element.height() - margin.top - margin.bottom;
         // var width = 800 - margin.left - margin.right,
@@ -111,10 +99,10 @@
             // debugger
         //sorts the data by max (men's) earnings
         function sortBy(data, attribute, order) {
+          // debugger
         	data.sort(function(a, b) {
-            // debugger
-          	if(a[attribute] < b[attribute]) return 1 * order;
-            if(a[attribute] > b[attribute]) return -1 * order;
+          	if(parseInt(a[attribute]) < parseInt(b[attribute])) return 1 * order;
+            if(parseInt(a[attribute]) > parseInt(b[attribute])) return -1 * order;
             return 0;
         	});
         }
@@ -167,7 +155,7 @@
     	.text(function(d) { return d.label });
 
     // Append div
-    var div = d3.select("selection_string").append("div")
+    var div = d3.select("body").append("div")
     	.attr("class", "tooltip")
     	.style("opacity", 0);
 
@@ -218,17 +206,40 @@
     	sortBy(plotData, "max", 1);
 
       y.domain(plotData.map(function(d) { return d.name }));
-      x.domain([0, d3.max(plotData, function(d) { return d.max })]);
+      //sets the x-axis manually for the second dot plot
+      if(this.xAxisRange !== null){
+        var xAxisDomain = this.xAxisRange.toString()
+        // debugger
+        // console.log(xAxisDomain)
+        // x.domain([0, d3.max(plotData, function(d) {
+        //   // debugger
+        //   // console.log(this.xAxisRange)
+        //   console.log(+d.max)
+        //   return +d.max
+        // })]);
+        x.domain([0, xAxisDomain])
+        // console.log(plotData)
+      } else {
+        x.domain([0, d3.max(plotData, function(d) {
+          // debugger
+          // console.log(this.xAxisRange)
+          return +d.max
+          // console.log(+d.max)
+        })]);
+      };
+      // debugger
       x.nice();
 
       yAxis = d3.axisLeft().scale(y)
     		.tickSize(0);
 
+        // debugger
       xAxis = d3.axisTop().scale(x)
         .tickFormat(function(d,i) {
           if (i == 0) {
             return "$0"
           } else {
+            // debugger
             return d3.format(".2s")(d);
           }
         });

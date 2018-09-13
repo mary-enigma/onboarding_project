@@ -1,10 +1,19 @@
 <template>
   <div class=main>
+    <div class = "title">
+      <h1>Exploring the Gender Pay Gap Through Public Data</h1>
+    </div>
+    <div class="intro">
+      This is a paragraph about the wage gap.
+    </div>
     <div class="explore-data">
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
     </section>
     <h2>Explore the Data</h2>
+    <p>
+      This data, from the 2016 American Community Survey,
+    </p>
     <autocomplete
       :items="info"
     ></autocomplete>
@@ -15,26 +24,26 @@
           <dot-plot
             :dataModel='dotPlot1Data'
             propID="dotPlot1"
+          ></dot-plot>
+      </div>
 
-            title='First Dot Plot'
-          ></dot-plot>
-      </div>
-      <div class="dot-plot">
-          <h2>Selected Fields Employing 75% or More Women</h2>
-          <dot-plot
-            :dataModel='dotPlot2Data'
-            propID="dotPlot2"
-            title='Second Dot Plot'
-          ></dot-plot>
-      </div>
       <div class="dot-plot">
           <h2>Selected Fields Employing 75% Or More Men</h2>
           <dot-plot
             :dataModel='dotPlot3Data'
             propID="dotPlot3"
-            title='Third Dot Plot'
           ></dot-plot>
       </div>
+
+      <div class="dot-plot">
+          <h2>Selected Fields Employing 75% or More Women</h2>
+          <dot-plot
+            :dataModel='dotPlot2Data'
+            propID="dotPlot2"
+            :xAxisRange='110'
+          ></dot-plot>
+      </div>
+
       <div class="bubble-chart">
           <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
           <bubble-chart
@@ -101,7 +110,7 @@
     //hard-coded data until I get stuff working
       this.dotPlot1Data = {
         "children": [
-          {"name":"Chief executives","max":"141108","min":"103564"},{"name":"Financial managers","max":"100505","min":"62089"},{"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
+          {"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
         ]
       }
 
@@ -137,7 +146,7 @@
       filterDotPlot1Data: function(data){
         //choose selected fields for the first dot plot
         var filteredValues =
-        ["Driver/sales workers and truck drivers", "First-line supervisors of retail sales workers", "Elementary and middle school teachers", "Registered nurses", "Secretaries and administrative assistants", "Customer service representatives", "Retail salespersons", "Accountants and auditors", "Janitors and building cleaners", "Laborers and freight, stock, and material movers, hand", "Nursing, psychiatric, and home health aides", "Cooks", "First-line supervisors of office and administrative support workers", "Sales representatives, wholesale and manufacturing", "Construction laborers", "Software developers, applications and systems software", "First-line supervisors of non-retail sales workers", "Chief executives", "Financial managers", "Cashiers"]
+        ["Driver/sales workers and truck drivers", "First-line supervisors of retail sales workers", "Elementary and middle school teachers", "Registered nurses", "Secretaries and administrative assistants", "Customer service representatives", "Retail salespersons", "Accountants and auditors", "Janitors and building cleaners", "Laborers and freight, stock, and material movers, hand", "Nursing, psychiatric, and home health aides", "Cooks", "First-line supervisors of office and administrative support workers", "Sales representatives, wholesale and manufacturing", "Construction laborers", "Software developers, applications and systems software", "First-line supervisors of non-retail sales workers", "Cashiers"]
 
         // filter by these fields
         var result = data.filter((e)=>{
