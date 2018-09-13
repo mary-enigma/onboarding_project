@@ -37,16 +37,19 @@
     ></autocomplete>
   </div>
   <div class="bubble-chart">
-      <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+    <h2>Bubble Chart Depicting Fields Percentage of Earnings</h2>
+    <div>
       <bubble-chart
         :dataModel='bubbleChartData'
         title='Bubble Chart Data'
+        propID="bubbleChart"
       ></bubble-chart>
+    </div>
   </div>
-
+<!--
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
-    </section>
+    </section> -->
 
     <div class="comparison">
       <div class="text">
@@ -290,6 +293,7 @@
       "intro intro intro intro"
       " . dot1 dot1 . "
       " . explore explore . "
+      " . bubble bubble . "
       " . compare compare . ";
   }
 
@@ -326,6 +330,9 @@
   .dot-plot {
     height: 500px;
   }
+  /* .bubble-chart {
+    height: 600px;
+  } */
   .explore-data {
     font-size: 16px;
   }

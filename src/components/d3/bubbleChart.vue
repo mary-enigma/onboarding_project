@@ -82,8 +82,8 @@
 
           let selection_string = "#" + id;
 
-            var diameter = 960;
-            var height = 800;
+            var diameter = 960; //960
+            var height = 800; //800
             var color = d3.scaleOrdinal(d3.schemeSet3);
             // var w = 500;
             // var h = 100;

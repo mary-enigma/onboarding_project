@@ -1,5 +1,8 @@
 <template>
   <div class="main">
+    <p>
+      something
+    </p>
   </div>
 </template>
 
