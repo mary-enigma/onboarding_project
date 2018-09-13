@@ -40,7 +40,7 @@
     <div class="explore-data">
       <h2 class="explore-title">Explore the Data</h2>
       <p class="explore-text">
-        Enter a field to see median earnings by men and women, as well as the pay gap for that field.
+        Enter a field to see median earnings by men and women as well as the pay gap for that field.
       </p>
       <autocomplete
         :items="info"

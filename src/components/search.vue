@@ -39,10 +39,10 @@
         Result:
       </p>
       <p class="result-text">
-        Field Name: {{ displayItem[0] }} </br>
-        Median earnings men: {{ displayItem[12] }} </br>
-        Median earnings women: {{ displayItem[14] }} </br>
-        Women's earnings as a percentage of men's earnings: {{ displayItem[16] }}
+        Field Name: <span class="dis-results"> {{ displayItem[0] }} </span></br>
+        Median earnings men: <span class="dis-results"> {{ displayItem[12] }} </span> </br>
+        Median earnings women: <span class="dis-results"> {{ displayItem[14] }} </span></br>
+        Women's earnings as a percentage of men's earnings: <span class="dis-results"> {{ displayItem[16] }} </span>
       </p>
     </div>
   </div>
@@ -175,6 +175,7 @@ export default {
     text-align: left;
     padding: 4px 2px;
     cursor: pointer;
+    background-color: white;
   }
 
   .autocomplete-result.is-active,
@@ -182,8 +183,13 @@ export default {
     background-color: #D770AD;
     color: white;
   }
+  .display-results {
+    margin-top: 10px;
+    margin-bottom: 2%;
+  }
   .search-text {
     color: white;
+    margin-bottom: 5px;
   }
   .result-text {
     color: white;
@@ -197,6 +203,10 @@ export default {
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #faeff5;
+  }
+  .dis-results {
+    font-weight: bold;
+    font-size: 20px;
   }
 
 </style>
