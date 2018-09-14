@@ -171,6 +171,7 @@
 
     var x = d3.scaleLinear()
     	.range([0, width]);
+      // debugger
 
     var lineGenerator = d3.line();
 
@@ -210,21 +211,25 @@
       if(this.xAxisRange !== null){
         var xAxisDomain = this.xAxisRange.toString()
         // debugger
-        // console.log(xAxisDomain)
+        console.log(xAxisDomain)
         // x.domain([0, d3.max(plotData, function(d) {
         //   // debugger
-        //   // console.log(this.xAxisRange)
+          // console.log(typeof(xAxisDomain))
         //   console.log(+d.max)
         //   return +d.max
         // })]);
-        x.domain([0, xAxisDomain])
+        x.domain([0, xAxisDomain]);
         // console.log(plotData)
       } else {
+        // x.domain([0, d3.max(plotData, function(d) {
+        //   // debugger
+        //   // console.log(this.xAxisRange)
+        //   // console.log(d.max)
+        //   return +d.max
+        //   // console.log(+d.max)
+        // })]);
         x.domain([0, d3.max(plotData, function(d) {
-          // debugger
-          // console.log(this.xAxisRange)
           return +d.max
-          // console.log(+d.max)
         })]);
       };
       // debugger
@@ -288,7 +293,8 @@
         .attr("transform", function(d) {
           return "translate(0," + (y(d.name) + (y.bandwidth() / 2)) + ")";
         })
-
+// debugger
+//[Array(10)]
       lollipops.append("path")
         .attr("class", "lollipop-line")
         .attr("d", lollipopLinePath);
@@ -302,7 +308,7 @@
     	.on("mouseover", showLabel)
     	.on("mousemove", moveLabel)
       .on("mouseout", hideLabel);
-
+// debugger
       endCircles = lollipops.append("circle")
         .attr("class", "lollipop-end")
         .attr("r", 5)
@@ -312,7 +318,7 @@
         .on("mouseover", showLabel)
         .on("mousemove", moveLabel)
         .on("mouseout", hideLabel);
-
+// debugger
     function showLabel() {
        	var selection = d3.select(this);
         var pos = classToPos[selection.attr("class")];
@@ -341,22 +347,6 @@
       	.attr("opacity", 0);
     }
 // debugger
-    function sortLollipops(attribute, ordering) {
-      // debugger
-      sortBy(plotData, attribute, 1);
-
-			y.domain(plotData.map(function(d) { return d.name })).copy();
-
-        lollipops
-          .transition()
-          .attr("transform", function(d) {
-            return "translate(" + [0, (y(d.name) + y.bandwidth() / 2)] + ")";
-          });
-
-        yAxisGroup.select(".y-axis")
-          .transition()
-          .call(yAxis);
-        }
     }
   }
 }

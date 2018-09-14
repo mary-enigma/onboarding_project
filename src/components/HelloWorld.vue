@@ -86,7 +86,7 @@
         <dot-plot
           :dataModel='dotPlot2Data'
           propID="dotPlot2"
-          :xAxisRange='110'
+          :xAxisRange='110000'
         ></dot-plot>
       </div>
     </div>
