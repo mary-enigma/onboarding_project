@@ -44,6 +44,9 @@
         Median earnings women: <span class="dis-results"> {{ displayItem[14] }} </span></br>
         Women's earnings as a percentage of men's earnings: <span class="dis-results"> {{ displayItem[16] }} </span>
       </p>
+      <p class="footnote">
+        * (X) indicates fewer than 100 sample cases (either men or women) and is too small to meet statistical standards for reliability.
+      </p>
     </div>
   </div>
 </template>
@@ -194,6 +197,10 @@ export default {
   .result-text {
     color: white;
     font-size: 16px;
+  }
+  .footnote {
+    color: white;
+    font-size: 10px;
   }
   .input-box {
     padding: 6px 12px;
