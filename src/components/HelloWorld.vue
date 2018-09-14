@@ -369,7 +369,7 @@
   }
   .explore-data {
     grid-area: explore;
-    background-color: #de93be;
+    background-color: #c37aa3;
   }
   .explore-title {
     margin-top: 2%;
