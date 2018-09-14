@@ -67,7 +67,7 @@
       <p class="comp-text">
         Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. </br></br>
 
-         An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men (see below).
+         An important aspect of the wage gap is that <i>fields that employ mostly women are paid lower</i> than fields that employ mostly men (see below).
       </p>
     </div>
     <div class="complexity-graphic">
@@ -90,6 +90,22 @@
         ></dot-plot>
       </div>
     </div>
+    <!-- <div class="bar-chart">
+      <p>
+        There are less women at the top.
+      </p>
+      <h2>Number of Women Compared to Men in Selected High-Level Occupational Roles</h2>
+      <bar-chart
+        :dataModel='barChartData'
+        propID="barChartData"
+      ></bar-chart>
+    </div> -->
+    <div class="resources">
+      <h2>Resources</h2>
+      <p>
+        Learn more about the gender wage gap and how you can help!
+      </p>
+    </div>
     <div class="footer">
       <h3>About Enigma Public</h3>
       <p>
@@ -108,6 +124,7 @@
   import 'vue-resize/dist/vue-resize.css';
   import DotPlot from './d3/dotPlot.vue';
   import BubbleChart from './d3/bubbleChart.vue';
+  import BarChart from './d3/stackedBarChart.vue';
   import Search from './search.vue';
   import * as d3 from "d3";
 
@@ -121,11 +138,13 @@
         dotPlot1Data: [],
         dotPlot2Data: [],
         dotPlot3Data: [],
-        bubbleChartData: []
+        bubbleChartData: [],
+        barChartData: []
       }
     },
     components: {
       'dot-plot': DotPlot,
+      'bar-chart': BarChart,
       'bubble-chart': BubbleChart,
       'autocomplete': Search
     },
@@ -167,6 +186,10 @@
 
       this.bubbleChartData = {
         "children": [{"Name":"Management","Count":"76.1"},{"Name":"Business and Financial Operations","Count":"76.9"},{"Name":"Computer and Mathematical","Count":"84.8"},{"Name":"Architecture and Engineering","Count":"86.5"},{"Name":"Life, Physical, and Social Science","Count":"86.4"},{"Name":"Community and Social Service","Count":"93.4"},{"Name":"Legal","Count":"53.4"},{"Name":"Education, Training, and Library","Count":"81.6"},{"Name":"Arts, Design, Entertainment, Sports, and Media","Count":"87.1"},{"Name":"Healthcare Practitioners and Technical","Count":"72.1"},{"Name":"Healthcare Support","Count":"87.9"},{"Name":"Protective Service","Count":"79.5"},{"Name":"Food Preparation and Serving Related","Count":"85.1"},{"Name":"Building and Grounds Cleaning and Maintenance","Count":"73"},{"Name":"Personal Care and Service","Count":"75.6"},{"Name":"Sales and Related","Count":"66.1"},{"Name":"Office and Administrative Support","Count":"88.8"},{"Name":"Farming, Fishing, and Forestry","Count":"75.1"},{"Name":"Construction and Extraction","Count":"87.6"},{"Name":"Installation, Maintenance, and Repair","Count":"88.6"},{"Name":"Production","Count":"69.1"},{"Name":"Transportation","Count":"75.5"},{"Name":"Material Moving","Count":"79.2"}]
+      }
+
+      this.barChartData = {
+        "children": [{"name":"Accountants and auditors","men":"76129","women":"57370"},{"name":"Elementary and middle school teachers","men":"53096","women":"50021"},{"name":"Registered nurses","men":"70952","women":"64413"},{"name":"Nursing, psychiatric, and home health aides","men":"29503","women":"25706"}]
       }
       // debugger
     },
@@ -323,6 +346,7 @@
       "lightbulb lightbulb lightbulb lightbulb"
       " . compgraphic comptext . "
       " . compare compare . "
+      "resources resources resources resources"
       "footer footer footer footer";
   }
 
@@ -426,7 +450,12 @@
     grid-area: compgraphic;
     margin-top: 20px;
   }
-
+  .bar-chart {
+    grid-area: bar;
+  }
+  .resources {
+    grid-area: resources;
+  }
   .dot-plot {
     height: 500px;
   }
