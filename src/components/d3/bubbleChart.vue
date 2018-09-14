@@ -159,7 +159,7 @@
                     return color(i);
                 })
                 .on("mouseover", function(d) {
-                  tooltip.text(d.data.Name + ": " + d.data.Count);
+                  tooltip.text(d.data.Name + ": " + d.data.Count + "%");
                   tooltip.style("visibility", "visible");
                 })
                 .on("mousemove", function() {
