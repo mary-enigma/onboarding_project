@@ -192,7 +192,9 @@
                 .attr("dy", "1.3em")
                 .style("text-anchor", "middle")
                 .text(function(d) {
-                    return d.data.Count;
+                  // debugger
+                  var dataPerc = d.data.Count + "%"
+                    return dataPerc;
                 })
                 .attr("font-family",  "Gill Sans", "Gill Sans MT")
                 .attr("font-size", function(d){
