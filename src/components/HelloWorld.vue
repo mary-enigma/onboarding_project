@@ -67,7 +67,7 @@
       <p class="comp-text">
         Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. </br></br>
 
-         An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
+         An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men (see below).
       </p>
     </div>
     <div class="complexity-graphic">
@@ -75,14 +75,14 @@
     </div>
     <div class="comparison">
       <div class="dot-plot">
-        <h2>Selected Fields Employing 75% Or More Men</h2>
+        <h2>Selected Occupations Employing 75% Or More Men</h2>
         <dot-plot
           :dataModel='dotPlot3Data'
           propID="dotPlot3"
         ></dot-plot>
       </div>
-      <div class="dot-plot">
-        <h2>Selected Fields Employing 75% or More Women</h2>
+      <div class="dot-plot" style="margin-top: 15px;">
+        <h2>Selected Occupations Employing 75% or More Women</h2>
         <dot-plot
           :dataModel='dotPlot2Data'
           propID="dotPlot2"
@@ -399,6 +399,7 @@
   }
   .comparison {
     grid-area: compare;
+    margin-top: 30px;
   }
   .comp-text {
     font-size: 16px;
@@ -424,23 +425,10 @@
     margin-top: 20px;
   }
 
-  /* ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  } */
   .dot-plot {
     height: 500px;
   }
-  /* .bubble-chart {
-    height: 600px;
-  } */
+
   .intro-image {
     /* opacity: .9 */
   }

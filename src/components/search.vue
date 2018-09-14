@@ -163,7 +163,6 @@ export default {
   .autocomplete {
     position: relative;
   }
-
   .autocomplete-results {
     padding: 0;
     margin: 0;
@@ -172,7 +171,6 @@ export default {
     overflow: auto;
     width: 100%;
   }
-
   .autocomplete-result {
     list-style: none;
     text-align: left;
@@ -180,7 +178,6 @@ export default {
     cursor: pointer;
     background-color: white;
   }
-
   .autocomplete-result.is-active,
   .autocomplete-result:hover {
     background-color: #D770AD;
