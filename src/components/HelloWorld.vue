@@ -62,13 +62,18 @@
     <div class="lightbulb-graphic">
       <img src="../assets/images/lightbulb-graphic.jpg" width="100%" class="graphic">
     </div>
+    <div class="complexity-text">
+      <h2 style="font-size: 24px;">The Complexity of the Gender Wage Gap</h2>
+      <p class="comp-text">
+        Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. </br></br>
+
+         An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
+      </p>
+    </div>
+    <div class="complexity-graphic">
+      <img src="../assets/images/next-graphic.jpg" width="75%" class="graphic">
+    </div>
     <div class="comparison">
-      <div class="comparison-text">
-        <h2 style="font-size: 24px;">The Complexity of the Gender Wage Gap</h2>
-        <p class="comparison-text">
-          Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. An important aspect of the wage gap is that fields that employ mostly women are paid lower than fields that employ mostly men.
-        </p>
-      </div>
       <div class="dot-plot">
         <h2>Selected Fields Employing 75% Or More Men</h2>
         <dot-plot
@@ -314,6 +319,7 @@
       " explore explore explore explore "
       " . bubble bubble . "
       "lightbulb lightbulb lightbulb lightbulb"
+      " . compgraphic comptext . "
       " . compare compare . "
       "footer footer footer footer";
   }
@@ -367,7 +373,7 @@
   }
   .explore-title {
     margin-top: 2%;
-    font-size: 28px;
+    font-size: 32px;
     color: white;
     font-weight: 900;
   }
@@ -377,6 +383,7 @@
   }
   .dot-plot1 {
     grid-area: dot1;
+    margin-top: 50px;
   }
   .about {
     grid-area: about;
@@ -388,14 +395,16 @@
 
   .bubble-chart {
     grid-area: bubble;
+    margin-top: 30px;
   }
   .comparison {
     grid-area: compare;
   }
-  .comparison-text {
+  .comp-text {
     font-size: 16px;
     margin-top: 10px;
     margin: 10px 15px 10px 15px;
+    text-align: left;
   }
   .footer {
     grid-area: footer;
@@ -405,6 +414,14 @@
   .lightbulb-graphic {
     grid-area: lightbulb;
     opacity: .8;
+  }
+  .complexity-text {
+    grid-area: comptext;
+    margin: 10% 0px 20px 20px;
+  }
+  .complexity-graphic {
+    grid-area: compgraphic;
+    margin-top: 20px;
   }
 
   /* ul {
