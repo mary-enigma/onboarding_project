@@ -91,11 +91,13 @@
       </div>
     </div>
     <div class="footer">
+      <h3>About Enigma Public</h3>
       <p>
-        About Enigma Public
+        Enigma Public is the world's broadest collection of public data and largest open government data source. With over 100,000 free datasets, Enigma is strongly committed to helping individuals gain a more comprehensive view of our world.
       </p>
+      <h3>About This Project</h3>
       <p>
-        About This Project: Made by Mary Boyd.
+         Made with ❤️ by <a href="https://github.com/marya314">Mary Boyd</a>.
       </p>
     </div>
   </div>
