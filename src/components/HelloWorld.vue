@@ -71,7 +71,7 @@
       </p>
     </div>
     <div class="complexity-graphic">
-      <img src="../assets/images/next-graphic.jpg" width="75%" class="graphic">
+      <img src="../assets/images/complexity.jpg" width="90%" class="graphic">
     </div>
     <div class="comparison">
       <div class="dot-plot">
