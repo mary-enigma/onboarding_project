@@ -105,7 +105,7 @@
           var y = d3.scaleLinear()
             .range([height, 0]);
 // debugger
-          var colors = ["D770AD", "#4A89DC"]
+          var colors = ["#4A89DC", "D770AD"]
                   // var parseDate = d3.timeParse(this.d3Time[this.dateFormat])
           var stack = d3.stack()
               .keys(keys)
@@ -238,7 +238,7 @@
             .attr("width", 25)
             .attr("height", 25)
             .attr("class", function(d, i) {return 'stack' + (keys.length - 1 - i);})
-            .style("fill", function(d, i) {return colors.slice().reverse()[i];});
+            .style("fill", function(d, i) {return colors.slice()[i];});
           legend.append("text")
             .attr("x", width - 20)
             .attr("y", 9)

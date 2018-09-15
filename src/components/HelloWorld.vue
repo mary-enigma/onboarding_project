@@ -190,7 +190,7 @@
 
       this.barChartData = {
         "children":
-        [{"name":"Chief executives","men":"813898","women":"254360"},{"name":"General and operations managers","men":"588111","women":"245894"},{"name":"Marketing and sales managers","men":"464995","women":"378845"},{"name":"Computer and information systems managers","men":"413250","women":"151497"},{"name":"Architectural and engineering managers","men":"131956","women":"12856"},{"name":"Medical and health services managers","men":"176012","women":"430603"}]
+        [{"name":"Chief executives","men":"813898","women":"254360"},{"name":"General and operations managers","men":"588111","women":"245894"},{"name":"Marketing and sales managers","men":"464995","women":"378845"},{"name":"Computer and information systems managers","men":"413250","women":"151497"},{"name":"Architectural and engineering managers","men":"131956","women":"12856"},{"name":"Emergency management directors","men":"5,663","women":"1,641"}]
       }
       // debugger
     },
@@ -243,7 +243,7 @@
       },
       filterBarData(data){
         var filteredBarFields =
-        ["Chief executives", "General and operations managers", "Computer and information systems managers", "Medical and health services managers", "Architectural and engineering managers", "Marketing and sales managers", "Managers, all other"]
+        ["Chief executives", "General and operations managers", "Computer and information systems managers", "Emergency management directors", "Architectural and engineering managers", "Marketing and sales managers"]
 
         var result = data.filter((e)=>{
           return filteredBarFields.includes(e[0])
@@ -310,7 +310,7 @@
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedBarPlot
         // this.barChartData = mappedDataObj
-        debugger
+        // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
       filterBubbleData(data){
@@ -488,7 +488,7 @@
     height: 500px;
   }
   .bar-chart {
-    margin: 0px 50px 0px 50px;
+    margin: 0px 50px 100px 50px;
     height: 700px;
   }
 
