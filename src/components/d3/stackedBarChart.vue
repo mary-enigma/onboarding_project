@@ -72,7 +72,7 @@
         var element = $(selection_string);
         //set margins
         //leave room in right margin for legend
-        var margin = {top: 30, right: 60, bottom: 30, left: 40},
+        var margin = {top: 30, right: 60, bottom: 50, left: 40},
           width = element.width() - margin.left - margin.right,
           height = element.height() - margin.top - margin.bottom;
 // debugger

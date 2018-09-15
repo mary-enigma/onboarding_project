@@ -95,10 +95,12 @@
         There are less women at the top.
       </p>
       <h2>Number of Women Compared to Men in Selected High-Level Occupational Roles</h2>
-      <bar-chart
+      <div class="bar-chart-container">
+        <bar-chart
         :dataModel='barChartData'
         propID="barChart"
-      ></bar-chart>
+        ></bar-chart>
+      </div>
     </div>
     <div class="resources">
       <h2>Resources</h2>
@@ -489,10 +491,12 @@
     height: 500px;
   }
   .bar-chart {
-    margin: 0px 50px 100px 50px;
-    height: 700px;
+    margin: 0px 50px 20px 50px;
+    /* height: 500px; */
   }
-
+  .bar-chart-container {
+    height: 560px;
+  }
   .intro-image {
     /* opacity: .9 */
   }
