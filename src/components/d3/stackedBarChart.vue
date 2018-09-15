@@ -157,17 +157,43 @@
               .text("Number of Workers");
 // debugger
           svg.append("g")
-            .attr("class", "x axis axis-stacked")
+            .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
-            .append("text")
-              .attr("x", (width / 2))
-              .attr("y", 10)
-              .attr("dy", ".71em")
-              .style("text-anchor", "end")
-              .attr("font-size", "16px")
-              .style("text-color", 'black')
-              .text("Occupation");
+          .selectAll(".tick text")
+          .call(wrap, x.bandwidth());
+            // .append("text")
+            //   .attr("x", (width / 2))
+            //   .attr("y", 10)
+            //   .attr("dy", ".71em")
+            //   .style("text-anchor", "end")
+            //   .attr("font-size", "16px")
+            //   .style("text-color", 'black')
+            //   .text("Occupation");
+
+            function wrap(text, width) {
+              text.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 1.1, // ems
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+                while (word = words.pop()) {
+                  line.push(word)
+                  tspan.text(line.join(" "))
+                if (tspan.node().getComputedTextLength() > width) {
+                  line.pop()
+                  tspan.text(line.join(" "))
+                  line = [word]
+                  tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+                }
+              }
+            })
+          }
 
             var layer = svg.selectAll(".stack")
               .data(layers)
