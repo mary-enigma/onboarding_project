@@ -65,13 +65,21 @@
     <div class="complexity-text">
       <h2 style="font-size: 24px;">The Complexity of the Gender Wage Gap</h2>
       <p class="comp-text">
-        Data such as this provides valuable information. However, the wage gap goes beyond just numbers by field, or even equal pay for equal work. </br></br>
+        Data such as this provides valuable information. However, the wage gap goes beyond just earnings by field, or even equal pay for equal work. Factors such as unemployment and career disruption (women leaving the workforce for circumstances such as child-bearing or family care) significantly impact the gender pay gap. The gap widens even more when adjusting for race.</br></br>
 
-         An important aspect of the wage gap is that <i>fields that employ mostly women are paid lower</i> than fields that employ mostly men (see below).
+        This is not just a gender issue, but a societal one. According to the American Community Survey, X% of households had women as the . The gender pay gap contributes to poverty.
       </p>
     </div>
     <div class="complexity-graphic">
       <img src="../assets/images/complexity.jpg" width="90%" class="graphic">
+    </div>
+    <div class="compare-text">
+      <div class="text-block">
+        <h2 class="top-title">Fields That Have Traditionally Employed Women Are Lower Paid</h2>
+        <p style="margin-top: 20px;">
+          An important aspect of the wage gap is that <i>fields that employ mostly women are lower paid</i> than fields that employ mostly men.
+        </p>
+      </div>
     </div>
     <div class="comparison">
       <div class="dot-plot">
@@ -91,7 +99,7 @@
       </div>
     </div>
     <div class="top-text">
-      <div style="margin: 40px">
+      <div class="text-block">
         <h3 class="top-title">There are few women at the top.</h3>
         <br/>
         <p class="top-text-text">
@@ -100,7 +108,7 @@
       </div>
     </div>
     <div class="bar-chart">
-      <h2>Number of Women Compared to Men in Selected High-Level Occupational Roles</h2>
+      <h2>Number of Women Compared to Men in Selected High-Level Occupations</h2>
       <div class="bar-chart-container">
         <bar-chart
         :dataModel='barChartData'
@@ -122,7 +130,7 @@
     <div class="footer">
       <h3>About Enigma Public</h3>
       <p>
-        Enigma Public is the world's broadest collection of public data and largest open government data source. With over 100,000 free datasets, Enigma is strongly committed to helping individuals gain a more comprehensive view of our world.
+        Enigma Public is the world's broadest collection of public data and largest open government data source. With over 100,000 free datasets, Enigma is strongly committed to helping individuals and organizations gain a more comprehensive view of our world.
       </p>
       <h3>About This Project</h3>
       <p>
@@ -386,6 +394,7 @@
       " . bubble bubble . "
       "lightbulb lightbulb lightbulb lightbulb"
       " . compgraphic comptext . "
+      "comparetext comparetext comparetext comparetext"
       " . compare compare . "
       "top top top top"
       " . bar bar . "
@@ -472,8 +481,7 @@
   }
   .comp-text {
     font-size: 16px;
-    margin-top: 10px;
-    margin: 10px 15px 10px 15px;
+    margin: 30px 15px 10px 15px;
     text-align: left;
   }
   .footer {
@@ -492,6 +500,11 @@
   .complexity-graphic {
     grid-area: compgraphic;
     margin-top: 20px;
+  }
+  .compare-text {
+    grid-area: comparetext;
+    background-color: #7d3c61;
+    color: white;
   }
   .bar-chart {
     grid-area: bar;
@@ -517,6 +530,10 @@
     font-size: 30px;
   }
   .top-text-text {
+    font-size: 16px;
+  }
+  .text-block {
+    margin: 40px;
     font-size: 16px;
   }
   .dot-plot {
