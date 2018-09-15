@@ -190,9 +190,10 @@
 
       this.barChartData = {
         "children":
-        [{"name":"Chief executives","men":"813898","women":"254360"},{"name":"General and operations managers","men":"588111","women":"245894"},{"name":"Marketing and sales managers","men":"464995","women":"378845"},{"name":"Computer and information systems managers","men":"413250","women":"151497"},{"name":"Architectural and engineering managers","men":"131956","women":"12856"},{"name":"Emergency management directors","men":"5,663","women":"1,641"}]
+        [{"name":"Chief executives","men":"813898","women":"254360"},{"name":"General and operations managers","men":"588111","women":"245894"},{"name":"Marketing and sales managers","men":"464995","women":"378845"},{"name":"Computer and information systems managers","men":"413250","women":"151497"},{"name":"Transportation, storage, and distribution managers","men":"182671","women":"40123"},{"name":"Architectural and engineering managers","men":"131956","women":"12856"}]
       }
       // debugger
+      //{"name":"Emergency management directors","men":"5,663","women":"1,641"}
     },
     methods: {
       //filters out metadata and runs functions
@@ -243,7 +244,7 @@
       },
       filterBarData(data){
         var filteredBarFields =
-        ["Chief executives", "General and operations managers", "Computer and information systems managers", "Emergency management directors", "Architectural and engineering managers", "Marketing and sales managers"]
+        ["Chief executives", "General and operations managers", "Computer and information systems managers", "Transportation, storage, and distribution managers", "Architectural and engineering managers", "Marketing and sales managers"]
 
         var result = data.filter((e)=>{
           return filteredBarFields.includes(e[0])
