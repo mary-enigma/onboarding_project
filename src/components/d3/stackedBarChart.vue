@@ -79,7 +79,7 @@
           //make tooltips
         var tooltip = d3.select("body")
           .append("div")
-          .attr("class", `d3_visuals_tooltip ${this.propID}_tooltip`)
+          .attr("class", "tooltip")
           .style("opacity", 0);
 
           d3.selectAll(`.${this.propID}_tooltip`).remove()
@@ -91,8 +91,6 @@
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-          // debugger
-          let localThis = this
           var data = this.dataModel.children
           var xKey = "name"
           var keys = Object.keys(data[0]).filter(el => el !== xKey)
@@ -136,7 +134,14 @@
             .scale(y)
             .tickSizeInner(-width+25, 0, 0)
             .ticks(6)
-            .tickFormat( function(d) { return d } );
+            .tickFormat( function(d,i) {
+              if (i == 0) {
+                return "0"
+              } else {
+                // debugger
+                return d3.format(".2s")(d);
+              }
+            });
 
             // debugger
                     //append x and y axises
@@ -180,26 +185,47 @@
               .attr("y", function (d) {return y(d[1])})
               .attr("height", function (d) {return y(d[0]) - y(d[1])})
               .attr("width", x.bandwidth())
+              .on("mouseover", function() { tooltip.style("display", null); })
+              .on("mouseout", function() { tooltip.style("display", "none"); })
+              .on("mousemove", function(d) {
+                var xPosition = d3.mouse(this)[0] - 15;
+                var yPosition = d3.mouse(this)[1] - 25;
+                tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+                tooltip.select("text").text(d.data.name);
+              });
 
-              //tooltips
-            .on("mouseover", function(d) {
-              localThis.$emit('jsc_mouseover', d)
-              // find the amount by subtracting the two values in array
-              var difference = d[1] - d[0];
-              // debugger
-              tooltip.transition()
-                  .duration(100)
-              .style("opacity", 1);
-                    tooltip.html("Amount: " + "<b>" + d.data + "</b>" +
-                      "<br>" + "Amount" + ": " + "<b>" + difference + "</b>")
-                  .style("left", (d3.event.pageX + 5) + "px")
-                  .style("top", (d3.event.pageY - 28) + "px");
-                })
-              .on("mouseout", function(d) {
-                tooltip.transition()
-                  .duration(300)
-                  .style("opacity", 0);
-              })
+            //   //tooltips
+            // .on("mouseover", function(d) {
+            //   localThis.$emit('jsc_mouseover', d)
+            //   // find the amount by subtracting the two values in array
+            //   var difference = d[1] - d[0];
+            //   // debugger
+            //   tooltip.transition()
+            //       .duration(100)
+            //   .style("opacity", 1);
+            //         tooltip.html("Amount: " + "<b>" + d.data + "</b>" +
+            //           "<br>" + "Amount" + ": " + "<b>" + difference + "</b>")
+            //       .style("left", (d3.event.pageX + 5) + "px")
+            //       .style("top", (d3.event.pageY - 28) + "px");
+            //     })
+            //   .on("mouseout", function(d) {
+            //     tooltip.transition()
+            //       .duration(300)
+            //       .style("opacity", 0);
+            //   })
+
+            tooltip.append("rect")
+              .attr("width", 30)
+              .attr("height", 20)
+              .attr("fill", "white")
+              .style("opacity", 0.5);
+
+            tooltip.append("text")
+              .attr("x", 15)
+              .attr("dy", "1.2em")
+              .style("text-anchor", "middle")
+              .attr("font-size", "12px")
+              .attr("font-weight", "bold");
 
         // Draw legend
           var legend = svg.selectAll(".legend")

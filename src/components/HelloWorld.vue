@@ -189,7 +189,8 @@
       }
 
       this.barChartData = {
-        "children": [{"name":"Accountants and auditors","men":"76129","women":"57370"},{"name":"Elementary and middle school teachers","men":"53096","women":"50021"},{"name":"Registered nurses","men":"70952","women":"64413"},{"name":"Nursing, psychiatric, and home health aides","men":"29503","women":"25706"}]
+        "children":
+        [{"name":"Chief executives","men":"813898","women":"254360"},{"name":"General and operations managers","men":"588111","women":"245894"},{"name":"Marketing and sales managers","men":"464995","women":"378845"},{"name":"Computer and information systems managers","men":"413250","women":"151497"},{"name":"Architectural and engineering managers","men":"131956","women":"12856"},{"name":"Medical and health services managers","men":"176012","women":"430603"}]
       }
       // debugger
     },
@@ -202,6 +203,7 @@
         this.filterDotPlot2Data(this.info)
         this.filterDotPlot3Data(this.info)
         this.filterBubbleData(this.info)
+        this.filterBarData(this.info)
         // debugger
         return this.info
       },
@@ -238,6 +240,16 @@
         })
         // debugger
         this.mapFilteredData3(result);
+      },
+      filterBarData(data){
+        var filteredBarFields =
+        ["Chief executives", "General and operations managers", "Computer and information systems managers", "Medical and health services managers", "Architectural and engineering managers", "Marketing and sales managers", "Managers, all other"]
+
+        var result = data.filter((e)=>{
+          return filteredBarFields.includes(e[0])
+        })
+        // debugger
+        this.mapBarData(result);
       },
       //map data to object so we can make graph
       mapFilteredData(data){
@@ -284,6 +296,21 @@
         mappedDataObj["children"] = mappedDotPlot3
         // this.dotPlot3Data = mappedDataObj
         // debugger
+        // console.log(JSON.stringify(this.dotPlot2Data))
+      },
+      mapBarData(data){
+        var mappedBarPlot = []
+        data.map((val)=>{
+          var mappedData = {}
+          mappedData["name"] = val[0]
+          mappedData["men"] = val[4]
+          mappedData["women"] = val[6]
+          mappedBarPlot.push(mappedData)
+        })
+        var mappedDataObj = {}
+        mappedDataObj["children"] = mappedBarPlot
+        // this.barChartData = mappedDataObj
+        debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
       filterBubbleData(data){
