@@ -65,7 +65,7 @@
     <div class="complexity-text">
       <h2 style="font-size: 24px;">The Complexity of the Gender Wage Gap</h2>
       <p class="comp-text">
-        Data such as this provides valuable information. However, the wage gap goes beyond just earnings by field, or even equal pay for equal work. Factors such as unemployment and career disruption (women leaving the workforce for circumstances such as child-bearing or family care) significantly impact the gender pay gap. The gap widens even more when adjusting for race.</br></br>
+        Earnings data adjusted for gender provides valuable information. However, the wage gap goes beyond just earnings by field, or even equal pay for equal work. Factors such as unemployment and career disruption (women leaving the workforce for circumstances like child-bearing or family care, for example) significantly impact the gender pay gap. The gap widens even more when adjusting for race.</br></br>
 
         This is not just a gender issue, but a societal one. According to the American Community Survey, X% of households had women as the . The gender pay gap contributes to poverty.
       </p>
@@ -75,7 +75,7 @@
     </div>
     <div class="compare-text">
       <div class="text-block">
-        <h2 class="top-title">Fields That Have Traditionally Employed Women Are Lower Paid</h2>
+        <h2 class="top-title">Fields That Traditionally Employed Women Are Lower Paid</h2>
         <p style="margin-top: 20px;">
           An important aspect of the wage gap is that <i>fields that employ mostly women are lower paid</i> than fields that employ mostly men.
         </p>
@@ -103,7 +103,7 @@
         <h3 class="top-title">There are few women at the top.</h3>
         <br/>
         <p class="top-text-text">
-          In addition to a wage gap, the dataset clearly displays an <i>opportunity gap</i> - there are less women in higher-level or advanced roles within their organizations.
+          In addition to a wage gap, the dataset clearly displays an <strong><i>opportunity gap</i></strong> - there are less women in higher-level or advanced roles within their organizations.
         </p>
       </div>
     </div>
@@ -499,7 +499,7 @@
   }
   .complexity-graphic {
     grid-area: compgraphic;
-    margin-top: 20px;
+    margin: 20px 0px 20px 0px;
   }
   .compare-text {
     grid-area: comparetext;
