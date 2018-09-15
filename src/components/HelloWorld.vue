@@ -90,16 +90,16 @@
         ></dot-plot>
       </div>
     </div>
-    <!-- <div class="bar-chart">
+    <div class="bar-chart">
       <p>
         There are less women at the top.
       </p>
       <h2>Number of Women Compared to Men in Selected High-Level Occupational Roles</h2>
       <bar-chart
         :dataModel='barChartData'
-        propID="barChartData"
+        propID="barChart"
       ></bar-chart>
-    </div> -->
+    </div>
     <div class="resources">
       <h2>Resources</h2>
       <p>
@@ -346,6 +346,7 @@
       "lightbulb lightbulb lightbulb lightbulb"
       " . compgraphic comptext . "
       " . compare compare . "
+      " . bar bar . "
       "resources resources resources resources"
       "footer footer footer footer";
   }
@@ -458,6 +459,9 @@
   }
   .dot-plot {
     height: 500px;
+  }
+  .bar-chart {
+    height: 600px;
   }
 
   .intro-image {
