@@ -206,12 +206,13 @@
             .data(colors)
             .enter().append("g")
             .attr("class", "legend")
-            .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
+            .attr("transform", function(d, i) { return "translate(30," + i * 25 + ")"; });
           legend.append("rect")
             .attr("x", width - 50)
             .attr("width", 25)
             .attr("height", 25)
-            .attr("class", function(d, i) {return 'stack' + (keys.length - 1 - i);});
+            .attr("class", function(d, i) {return 'stack' + (keys.length - 1 - i);})
+            .style("fill", function(d, i) {return colors.slice().reverse()[i];});
           legend.append("text")
             .attr("x", width - 20)
             .attr("y", 9)

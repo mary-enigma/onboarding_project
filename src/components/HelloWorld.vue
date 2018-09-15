@@ -461,7 +461,8 @@
     height: 500px;
   }
   .bar-chart {
-    height: 600px;
+    margin: 0px 50px 0px 50px;
+    height: 700px;
   }
 
   .intro-image {
