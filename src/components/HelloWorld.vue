@@ -112,10 +112,12 @@
       <img src="../assets/images/next-graphic.jpg" width="75%" class="graphic">
     </div>
     <div class="resources">
-      <h2>Resources</h2>
-      <p>
-        Learn more about the gender wage gap and how you can help!
-      </p>
+      <div class="resources-text">
+        <h2 class="resources-title">Resources</h2>
+        <p>
+          Explore more data, dive deeper into the gender wage gap issue, and learn how you can help!
+        </p>
+      </div>
     </div>
     <div class="footer">
       <h3>About Enigma Public</h3>
@@ -476,7 +478,7 @@
   }
   .footer {
     grid-area: footer;
-    background-color: #3F9994;
+    background-color: #508694;
     color: white;
   }
   .lightbulb-graphic {
@@ -499,7 +501,12 @@
   }
   .resources-graphic {
     grid-area: resgraph;
-
+  }
+  .resources-title {
+    font-size: 30px;
+  }
+  .resources-text {
+    margin: 10% 0px 20px 20px;
   }
   .top-text {
     grid-area: top;
@@ -516,7 +523,7 @@
     height: 500px;
   }
   .bar-chart {
-    margin: 0px 50px 20px 50px;
+    margin: 20px 50px 20px 50px;
     /* height: 500px; */
   }
   .bar-chart-container {
