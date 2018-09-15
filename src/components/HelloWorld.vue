@@ -90,10 +90,16 @@
         ></dot-plot>
       </div>
     </div>
+    <div class="top-text">
+      <div style="margin: 40px">
+        <h3 class="top-title">There are few women at the top.</h3>
+        <br/>
+        <p class="top-text-text">
+          In addition to a wage gap, the dataset clearly displays an <i>opportunity gap</i> - there are less women in higher-level or advanced roles within their organizations.
+        </p>
+      </div>
+    </div>
     <div class="bar-chart">
-      <p>
-        There are less women at the top.
-      </p>
       <h2>Number of Women Compared to Men in Selected High-Level Occupational Roles</h2>
       <div class="bar-chart-container">
         <bar-chart
@@ -101,6 +107,9 @@
         propID="barChart"
         ></bar-chart>
       </div>
+    </div>
+    <div class="resources-graphic">
+      <img src="../assets/images/next-graphic.jpg" width="75%" class="graphic">
     </div>
     <div class="resources">
       <h2>Resources</h2>
@@ -376,8 +385,9 @@
       "lightbulb lightbulb lightbulb lightbulb"
       " . compgraphic comptext . "
       " . compare compare . "
+      "top top top top"
       " . bar bar . "
-      "resources resources resources resources"
+      " . resgraph resources . "
       "footer footer footer footer";
   }
 
@@ -486,6 +496,21 @@
   }
   .resources {
     grid-area: resources;
+  }
+  .resources-graphic {
+    grid-area: resgraph;
+
+  }
+  .top-text {
+    grid-area: top;
+    background-color: #74A4B2;
+    color: white;
+  }
+  .top-title {
+    font-size: 30px;
+  }
+  .top-text-text {
+    font-size: 16px;
   }
   .dot-plot {
     height: 500px;
