@@ -424,8 +424,6 @@
     color: white;
     text-align: left;
     font-weight: 500;
-    /* left: 40px; */
-    /* text-align: left; */
   }
   .intro-btn {
     width: 200px;

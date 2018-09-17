@@ -313,9 +313,9 @@
     stroke: #000;
   }
 
-  path.domain {
+  /* path.domain {
     stroke: none;
-  }
+  } */
 
   .y .tick line {
     stroke: #ddd;
