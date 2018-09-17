@@ -14,7 +14,7 @@
           This project explores the gender wage gap by occupation through reported earnings by gender using data from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
           </p>
           <div style="margin-top: 30px">
-            <v-btn class="intro-btn"><a href="https://public.enigma.com/datasets/full-time-year-round-workers-and-median-earnings-in-the-past-12-months-by-sex-and-detailed-occupation-2016/3616bd60-2fec-4cf6-99a3-477dae4afbb9" style="text-decoration: none; color:black">View the data</a></v-btn>
+            <v-btn class="intro-btn"><a href="https://public.enigma.com/datasets/full-time-year-round-workers-and-median-earnings-in-the-past-12-months-by-sex-and-detailed-occupation-2016/3616bd60-2fec-4cf6-99a3-477dae4afbb9" target="_blank" style="text-decoration: none; color:black">View the data</a></v-btn>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
         <h3 class="top-title">There are few women at the top.</h3>
         <br/>
         <p class="top-text-text">
-          In addition to a wage gap, the dataset clearly displays an <strong><i>opportunity gap</i></strong> - there are less women in higher-level or advanced roles within their organizations.
+          In addition to a wage gap, the data exposes an <strong><i>opportunity gap</i></strong> - there are less women in higher-level or advanced roles within their organizations.
         </p>
       </div>
     </div>
