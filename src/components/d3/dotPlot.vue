@@ -84,7 +84,7 @@
         var element = $(selection_string);
 
         //make margins and svg
-    		var margin = {top: 70, right: 15, bottom: 50, left: 375},
+    		var margin = {top: 90, right: 15, bottom: 50, left: 375},
             width = element.width() - margin.left - margin.right,
             height = element.height() - margin.top - margin.bottom;
         // var width = 800 - margin.left - margin.right,
@@ -363,12 +363,6 @@
     position: absolute;
     top: 15px;
     left: 15px;
-  }
-
-  .dropdown {
-    position: absolute;
-    top: 15px;
-    right: 15px;
   }
 
   text {
