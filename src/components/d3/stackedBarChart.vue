@@ -76,11 +76,23 @@
           width = element.width() - margin.left - margin.right,
           height = element.height() - margin.top - margin.bottom;
 // debugger
-          //make tooltips
-        var tooltip = d3.select("body")
-          .append("div")
-          .attr("class", "tooltip")
-          .style("opacity", 0);
+
+          //make div for tooltips
+          var div = d3.select("body").append("div")
+              .attr("class", "tooltip")
+              .style("opacity", 0);
+
+          var tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .style("color", "white")
+            .style("padding", "8px")
+            .style("background-color", "rgba(0, 0, 0, 0.75)")
+            .style("border-radius", "6px")
+            .style("font", "12px sans-serif")
+            .text("tooltip");
 
           d3.selectAll(`.${this.propID}_tooltip`).remove()
 
@@ -160,16 +172,8 @@
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
-          .selectAll(".tick text")
-          .call(wrap, x.bandwidth());
-            // .append("text")
-            //   .attr("x", (width / 2))
-            //   .attr("y", 10)
-            //   .attr("dy", ".71em")
-            //   .style("text-anchor", "end")
-            //   .attr("font-size", "16px")
-            //   .style("text-color", 'black')
-            //   .text("Occupation");
+            .selectAll(".tick text")
+            .call(wrap, x.bandwidth());
 
             function wrap(text, width) {
               text.each(function() {
@@ -201,7 +205,7 @@
               .attr("class", function (d, i) {return 'stack' + i;})
               .style("fill", function (d, i) {return colors[i];});
 
-                      //create the stacks
+            //create the stacks
             layer.selectAll("rect")
               .data(function (d) {return d;})
               .enter()
@@ -211,47 +215,15 @@
               .attr("y", function (d) {return y(d[1])})
               .attr("height", function (d) {return y(d[0]) - y(d[1])})
               .attr("width", x.bandwidth())
-              .on("mouseover", function() { tooltip.style("display", null); })
-              .on("mouseout", function() { tooltip.style("display", "none"); })
-              .on("mousemove", function(d) {
-                var xPosition = d3.mouse(this)[0] - 15;
-                var yPosition = d3.mouse(this)[1] - 25;
-                tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-                tooltip.select("text").text(d.data.name);
-              });
-
-            //   //tooltips
-            // .on("mouseover", function(d) {
-            //   localThis.$emit('jsc_mouseover', d)
-            //   // find the amount by subtracting the two values in array
-            //   var difference = d[1] - d[0];
-            //   // debugger
-            //   tooltip.transition()
-            //       .duration(100)
-            //   .style("opacity", 1);
-            //         tooltip.html("Amount: " + "<b>" + d.data + "</b>" +
-            //           "<br>" + "Amount" + ": " + "<b>" + difference + "</b>")
-            //       .style("left", (d3.event.pageX + 5) + "px")
-            //       .style("top", (d3.event.pageY - 28) + "px");
-            //     })
-            //   .on("mouseout", function(d) {
-            //     tooltip.transition()
-            //       .duration(300)
-            //       .style("opacity", 0);
-            //   })
-
-            tooltip.append("rect")
-              .attr("width", 30)
-              .attr("height", 20)
-              .attr("fill", "white")
-              .style("opacity", 0.5);
-
-            tooltip.append("text")
-              .attr("x", 15)
-              .attr("dy", "1.2em")
-              .style("text-anchor", "middle")
-              .attr("font-size", "12px")
-              .attr("font-weight", "bold");
+              .on("mouseover", function(d) {
+                // tooltip.text("Women: " + d.data.women + "\nMen: " + d.data.men);
+                tooltip.html("Women: " + d.data.women + "<br />" + "Men: " + d.data.men)
+                tooltip.style("visibility", "visible");
+              })
+              .on("mousemove", function() {
+                  return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+              })
+              .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
         // Draw legend
           var legend = svg.selectAll(".legend")
@@ -280,28 +252,7 @@
 </script>
 
 <style>
-  /* .legend {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-  }
-  .axis-stacked {
-    font-size: 14px;
-  }
-  .stack0 {
-    fill: var(--first);
-  }
-  .stack1 {
-    fill: var(--third);
-  }
-  .stack2 {
-    fill: var(--fifth);
-  }
-  .stack3 {
-    fill: var(--seventh);
-  }
-  .tick line {
-    fill: none;
-  } */
+
   svg {
     font: 10px sans-serif;
     shape-rendering: crispEdges;
@@ -320,4 +271,16 @@
   .y .tick line {
     stroke: #ddd;
   }
+
+  div.tooltip {
+  position: absolute;
+  text-align: center;
+  color: white;
+  padding: 8px;
+  font: 12px sans-serif;
+  /* background-color: rgba(0, 0, 0, 0.75); */
+  font: 12px sans-serif;
+  border-radius: 6px;
+  pointer-events: none;
+}
 </style>
