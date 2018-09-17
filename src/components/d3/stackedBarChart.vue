@@ -106,7 +106,6 @@
           var data = this.dataModel.children
           var xKey = "name"
           var keys = Object.keys(data[0]).filter(el => el !== xKey)
-          // debugger
 
           //set x, y axis and color
           var x = d3.scaleBand()
@@ -116,9 +115,8 @@
 
           var y = d3.scaleLinear()
             .range([height, 0]);
-// debugger
+
           var colors = ["#4A89DC", "D770AD"]
-                  // var parseDate = d3.timeParse(this.d3Time[this.dateFormat])
           var stack = d3.stack()
               .keys(keys)
               .order(d3.stackOrderNone)
@@ -129,15 +127,13 @@
             return d.name;
           }));
            y.domain([0, d3.max(layers[layers.length - 1], function(d) { return d[1]; }) ]).nice();
-          // debugger
           var ticks = data.map(function (d) {
-            // debugger
             return d.name;
           })
           if (ticks.length > 11) {
             ticks = ticks.filter(function(t, i) { return i % 6 === 0; })
           }
-// debugger
+
           //make x and y axises
           var xAxis = d3.axisBottom()
             .scale(x)
@@ -155,18 +151,17 @@
               }
             });
 
-            // debugger
-                    //append x and y axises
-          svg.append("g")
-            .attr("class", "y axis axis-stacked")
-            .call(yAxis)
-            .append('text')
-              .attr("transform", "rotate(-90)")
-              .attr("y", 6)
-              .attr("dy", ".71em")
-              .style("text-anchor", "end")
-              .attr("font-size", "16px")
-              .text("Number of Workers");
+          //append x and y axises
+        svg.append("g")
+          .attr("class", "y axis axis-stacked")
+          .call(yAxis)
+          .append('text')
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .attr("font-size", "16px")
+            .text("Number of Workers");
 // debugger
           svg.append("g")
             .attr("class", "x axis")
@@ -175,6 +170,7 @@
             .selectAll(".tick text")
             .call(wrap, x.bandwidth());
 
+            //function to wrap text for long x-axis labels
             function wrap(text, width) {
               text.each(function() {
                 var text = d3.select(this),
@@ -205,7 +201,7 @@
               .attr("class", function (d, i) {return 'stack' + i;})
               .style("fill", function (d, i) {return colors[i];});
 
-            //create the stacks
+            //create the stacks and activate tooltips
             layer.selectAll("rect")
               .data(function (d) {return d;})
               .enter()
@@ -273,14 +269,14 @@
   }
 
   div.tooltip {
-  position: absolute;
-  text-align: center;
-  color: white;
-  padding: 8px;
-  font: 12px sans-serif;
-  /* background-color: rgba(0, 0, 0, 0.75); */
-  font: 12px sans-serif;
-  border-radius: 6px;
-  pointer-events: none;
-}
+    position: absolute;
+    text-align: center;
+    color: white;
+    padding: 8px;
+    font: 12px sans-serif;
+    /* background-color: rgba(0, 0, 0, 0.75); */
+    font: 12px sans-serif;
+    border-radius: 6px;
+    pointer-events: none;
+  }
 </style>
