@@ -170,6 +170,7 @@ export default {
     height: 120px;
     overflow: auto;
     width: 100%;
+    background-color: white;
   }
   .autocomplete-result {
     list-style: none;

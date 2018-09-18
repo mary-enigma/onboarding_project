@@ -492,8 +492,8 @@
          }
          .inner-intro {
            position: absolute;
-           top: 10px;
-           left: 10px;
+           top: 30px;
+           left: 20px;
            right: 300px;
          }
          .intro-title {
@@ -504,7 +504,7 @@
          }
          .intro-text {
            margin-top: 50px;
-           font-size: 12px;
+           font-size: 14px;
            color: white;
            text-align: left;
            font-weight: 500;

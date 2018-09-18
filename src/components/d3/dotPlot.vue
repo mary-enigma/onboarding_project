@@ -70,7 +70,6 @@
         id = this._props.propID,
         xrange = this._props.xAxisRange
       ) {
-        // debugger
 
         // var hoverLine = true;
 
@@ -89,7 +88,7 @@
             height = element.height() - margin.top - margin.bottom;
         // var width = 800 - margin.left - margin.right,
         // 		height = 500 - margin.top - margin.bottom;
-
+// debugger
         var svg = d3.select(selection_string).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
