@@ -8,26 +8,26 @@
         </div>
         <div class="intro-text">
           <p>
-            Nearly every occupation in the United States experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents for every dollar a man earns. However, the gap varies widely by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, while architectural and engineering managers experience almost no gap (99.9%).
+            Nearly every occupation in the United States experiences a gender wage gap. Most people are familiar with the average pay gap statistic - in 2017, women were paid, on average, 82 cents for every dollar a man earns. However, the gap varies significantly by field - women are paid almost half of what men are paid (56.3%) in some legal occupations such as financial clerks, while architectural and engineering managers experience almost no gap (99.9%).
           </br>
           </br>
           This project explores the gender wage gap by occupation through reported earnings by gender using data from the 2016 <a href="https://www.census.gov/programs-surveys/acs/">American Community Survey</a>, available on <a href="https://public.enigma.com/">Enigma Public</a>.
           </p>
-          <div style="margin-top: 30px">
+          <div>
             <v-btn class="intro-btn"><a href="https://public.enigma.com/datasets/full-time-year-round-workers-and-median-earnings-in-the-past-12-months-by-sex-and-detailed-occupation-2016/3616bd60-2fec-4cf6-99a3-477dae4afbb9" target="_blank" style="text-decoration: none; color:black">View the data</a></v-btn>
           </div>
         </div>
       </div>
-  </div>
-  <div class="dot-plot1">
-    <h2 class="dot1-title">Men's Earnings Compared to Women's for Selected Common Occupations</h2>
-    <div class="dot-plot">
-      <dot-plot
-        :dataModel='dotPlot1Data'
-        propID="dotPlot1"
-      ></dot-plot>
     </div>
-  </div>
+    <div class="dot-plot-overview">
+      <div class="dot-plot">
+        <h2 class="dot1-title">Men's Earnings Compared to Women's for Selected Common Occupations</h2>
+        <dot-plot
+          :dataModel='dotPlot1Data'
+          propID="dotPlot1"
+        ></dot-plot>
+      </div>
+    </div>
     <div class="about">
       <h3 style="font-size: 20px;">About the Data</h3>
       <p class="about-text">
@@ -381,7 +381,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
-  .main {
+  /* .main {
     display: grid;
     grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
     grid-template-rows: auto;
@@ -400,36 +400,132 @@
       " . bar bar . "
       " . resgraph resources . "
       "footer footer footer footer";
-  }
+  } */
 
-  .intro {
-    grid-area: intro;
-    position: relative;
-  }
-  .inner-intro {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 500px;
-  }
-  .intro-title {
-    font-size: 30px;
-    color: white;
-    font-weight: 800;
-    text-align: center;
-  }
-  .intro-text {
-    margin-top: 50px;
-    font-size: 16px;
-    color: white;
-    text-align: left;
-    font-weight: 500;
-  }
-  .intro-btn {
-    width: 200px;
-    background-color: #B4E0E9!important;
-    color: white
-  }
+  @media only screen and (min-width: 800px)   {
+       .main {
+          display: grid;
+          grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
+          grid-template-rows: auto;
+          grid-row-gap: 20px;
+          grid-template-areas:
+            "intro intro intro intro"
+            " . dot1 dot1 . "
+            " . about graphic . "
+            " explore explore explore explore "
+            " . bubble bubble . "
+            "lightbulb lightbulb lightbulb lightbulb"
+            " . compgraphic comptext . "
+            "comparetext comparetext comparetext comparetext"
+            " . compare compare . "
+            "top top top top"
+            " . bar bar . "
+            " . resgraph resources . "
+            "footer footer footer footer";
+       }
+       .intro {
+         grid-area: intro;
+         position: relative;
+       }
+       .inner-intro {
+         position: absolute;
+         top: 40px;
+         left: 40px;
+         right: 500px;
+       }
+       .intro-title {
+         font-size: 30px;
+         color: white;
+         font-weight: 800;
+         text-align: center;
+       }
+       .intro-text {
+         margin-top: 50px;
+         font-size: 16px;
+         color: white;
+         text-align: left;
+         font-weight: 500;
+       }
+       .intro-btn {
+         margin-top: 30px;
+         width: 200px;
+         background-color: #B4E0E9!important;
+         color: white
+       }
+       .about {
+         grid-area: about;
+         margin: 10% 0px 20px 20px;
+       }
+       .complexity-text {
+         grid-area: comptext;
+         margin: 10% 0px 20px 20px;
+       }
+   }
+
+    @media only screen and (max-width: 799px)   {
+         .main {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+            grid-row-gap: 10px;
+            grid-template-areas:
+              "intro intro intro intro"
+              " . dot1 dot1 . "
+              "graphic graphic graphic graphic"
+              "about about about about"
+              " explore explore explore explore "
+              " . bubble bubble . "
+              "lightbulb lightbulb lightbulb lightbulb"
+              " . compgraphic compgraphic . "
+              " . comptext comptext . "
+              "comparetext comparetext comparetext comparetext"
+              " . compare compare . "
+              "top top top top"
+              " . bar bar . "
+              " . resgraph resgraph . "
+              " . resources resources . "
+              "footer footer footer footer";
+         }
+         .intro {
+           grid-area: intro;
+           position: relative;
+         }
+         .inner-intro {
+           position: absolute;
+           top: 10px;
+           left: 10px;
+           right: 300px;
+         }
+         .intro-title {
+           font-size: 16px;
+           color: white;
+           font-weight: 800;
+           text-align: center;
+         }
+         .intro-text {
+           margin-top: 50px;
+           font-size: 12px;
+           color: white;
+           text-align: left;
+           font-weight: 500;
+         }
+         .intro-btn {
+           margin-top: 30px;
+           width: 200px;
+           background-color: #B4E0E9!important;
+           color: white
+         }
+         .about {
+           grid-area: about;
+           margin: 5% 0px 20px 20px;
+         }
+         .complexity-text {
+           grid-area: comptext;
+           margin: 3% 0px 20px 20px;
+         }
+     }
+
+
   .intro a {
     color: #7173a9;
   }
@@ -457,14 +553,11 @@
     font-size: 14px;
     color: white;
   }
-  .dot-plot1 {
+  .dot-plot-overview {
     grid-area: dot1;
     margin-top: 50px;
   }
-  .about {
-    grid-area: about;
-    margin: 10% 0px 20px 20px;
-  }
+
   .pay-graphic {
     grid-area: graphic;
   }
@@ -477,11 +570,6 @@
     grid-area: compare;
     margin-top: 30px;
   }
-  .comp-text {
-    font-size: 16px;
-    margin: 30px 15px 10px 15px;
-    text-align: left;
-  }
   .footer {
     grid-area: footer;
     background-color: #508694;
@@ -490,10 +578,6 @@
   .lightbulb-graphic {
     grid-area: lightbulb;
     opacity: .8;
-  }
-  .complexity-text {
-    grid-area: comptext;
-    margin: 10% 0px 20px 20px;
   }
   .complexity-graphic {
     grid-area: compgraphic;
@@ -536,6 +620,7 @@
   }
   .dot-plot {
     height: 500px;
+    width: 100%;
   }
   .bar-chart {
     margin: 20px 50px 20px 50px;
