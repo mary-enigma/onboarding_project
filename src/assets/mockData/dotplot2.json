@@ -1,0 +1,5 @@
+{
+  "children":[
+    {"name":"Social workers","max":"44973","min":"44603"},{"name":"Preschool and kindergarten teachers","max":"29102","min":"25021"},{"name":"Librarians","max":"57961","min":"50671"},{"name":"Teacher assistants","max":"31063","min":"22095"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Medical assistants","max":"32083","min":"30418"},{"name":"Maids and housekeeping cleaners","max":"25788","min":"21000"},{"name":"Childcare workers","max":"25324","min":"21212"},{"name":"Receptionists and information clerks","max":"29582","min":"28444"}
+  ]
+}

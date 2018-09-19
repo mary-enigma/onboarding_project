@@ -210,7 +210,7 @@
       if(this.xAxisRange !== null){
         var xAxisDomain = this.xAxisRange.toString()
         // debugger
-        console.log(xAxisDomain)
+        // console.log(xAxisDomain)
         // x.domain([0, d3.max(plotData, function(d) {
         //   // debugger
           // console.log(typeof(xAxisDomain))

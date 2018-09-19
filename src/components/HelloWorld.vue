@@ -134,7 +134,7 @@
       </p>
       <h3>About This Project</h3>
       <p>
-         Made with ❤️ by <a href="https://github.com/marya314">Mary Boyd</a>.
+         Made by <a href="https://github.com/marya314">Mary Boyd</a>.
       </p>
     </div>
   </div>
@@ -147,7 +147,12 @@
   import BubbleChart from './d3/bubbleChart.vue';
   import BarChart from './d3/stackedBarChart.vue';
   import Search from './search.vue';
-  import * as d3 from "d3";
+  import * as d3 from 'd3';
+  import dotData1 from '../assets/mockData/dotplot1.json';
+  import dotData2 from '../assets/mockData/dotplot2.json';
+  import dotData3 from '../assets/mockData/dotplot3.json';
+  import bubbleData from '../assets/mockData/bubbleChart.json';
+  import barData from '../assets/mockData/barChart.json';
 
   export default {
     name: 'HelloWorld',
@@ -156,11 +161,11 @@
         info: {},
         loading: true,
         errored: false,
-        dotPlot1Data: [],
-        dotPlot2Data: [],
-        dotPlot3Data: [],
-        bubbleChartData: [],
-        barChartData: []
+        dotPlot1Data: dotData1,
+        dotPlot2Data: dotData2,
+        dotPlot3Data: dotData3,
+        bubbleChartData: bubbleData,
+        barChartData: barData
       }
     },
     components: {
@@ -170,10 +175,11 @@
       'autocomplete': Search
     },
     mounted(){
-    // debugger
+
     },
     created(){
-      //this gets all the data
+
+      //gets all the data and calls method to start filtering
       axios
       .get('https://public.enigma.com/api/snapshots/3ca9486a-db7c-4216-8e99-0428e3b0b54d?&row_limit=1000&row_offset=0&include_serialids=true')
       .then(response => {
@@ -186,35 +192,6 @@
       })
       .finally(() => this.loading = false)
 
-    //hard-coded data until I get stuff working
-      this.dotPlot1Data = {
-        "children": [
-          {"name":"Accountants and auditors","max":"76129","min":"57370"},{"name":"Elementary and middle school teachers","max":"53096","min":"50021"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Cooks","max":"22575","min":"20320"},{"name":"Janitors and building cleaners","max":"30654","min":"22962"},{"name":"First-line supervisors of retail sales workers","max":"46343","min":"33778"},{"name":"First-line supervisors of non-retail sales workers","max":"67434","min":"58166"},{"name":"Cashiers","max":"22413","min":"20482"},{"name":"Retail salespersons","max":"40116","min":"26781"},{"name":"Sales representatives, wholesale and manufacturing","max":"70464","min":"54077"},{"name":"First-line supervisors of office and administrative support workers","max":"56346","min":"45996"},{"name":"Customer service representatives","max":"36744","min":"32095"},{"name":"Secretaries and administrative assistants","max":"42411","min":"36929"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
-        ]
-      }
-
-      this.dotPlot2Data = {
-        "children":[
-          {"name":"Social workers","max":"44973","min":"44603"},{"name":"Preschool and kindergarten teachers","max":"29102","min":"25021"},{"name":"Librarians","max":"57961","min":"50671"},{"name":"Teacher assistants","max":"31063","min":"22095"},{"name":"Registered nurses","max":"70952","min":"64413"},{"name":"Nursing, psychiatric, and home health aides","max":"29503","min":"25706"},{"name":"Medical assistants","max":"32083","min":"30418"},{"name":"Maids and housekeeping cleaners","max":"25788","min":"21000"},{"name":"Childcare workers","max":"25324","min":"21212"},{"name":"Receptionists and information clerks","max":"29582","min":"28444"}
-        ]
-      }
-
-      this.dotPlot3Data = {
-        "children":[
-          {"name":"Construction managers","max":"71907","min":"62218"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Police and sheriff patrol officers","max":"64792","min":"57402"},{"name":"Grounds maintenance workers","max":"25838","min":"22944"},{"name":"First-line supervisors of construction trades and extraction workers","max":"60145","min":"45174"},{"name":"Carpenters","max":"36414","min":"31637"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Pipelayers, plumbers, pipefitters, and steamfitters","max":"47046","min":"45525"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
-        ]
-      }
-
-      this.bubbleChartData = {
-        "children": [{"Name":"Management","Count":"76.1"},{"Name":"Business and Financial Operations","Count":"76.9"},{"Name":"Computer and Mathematical","Count":"84.8"},{"Name":"Architecture and Engineering","Count":"86.5"},{"Name":"Life, Physical, and Social Science","Count":"86.4"},{"Name":"Community and Social Service","Count":"93.4"},{"Name":"Legal","Count":"53.4"},{"Name":"Education, Training, and Library","Count":"81.6"},{"Name":"Arts, Design, Entertainment, Sports, and Media","Count":"87.1"},{"Name":"Healthcare Practitioners and Technical","Count":"72.1"},{"Name":"Healthcare Support","Count":"87.9"},{"Name":"Protective Service","Count":"79.5"},{"Name":"Food Preparation and Serving Related","Count":"85.1"},{"Name":"Building and Grounds Cleaning and Maintenance","Count":"73"},{"Name":"Personal Care and Service","Count":"75.6"},{"Name":"Sales and Related","Count":"66.1"},{"Name":"Office and Administrative Support","Count":"88.8"},{"Name":"Farming, Fishing, and Forestry","Count":"75.1"},{"Name":"Construction and Extraction","Count":"87.6"},{"Name":"Installation, Maintenance, and Repair","Count":"88.6"},{"Name":"Production","Count":"69.1"},{"Name":"Transportation","Count":"75.5"},{"Name":"Material Moving","Count":"79.2"}]
-      }
-
-      this.barChartData = {
-        "children":
-        [{"name":"Chief executives","men":"813898","women":"254360"},{"name":"General and operations managers","men":"588111","women":"245894"},{"name":"Marketing and sales managers","men":"464995","women":"378845"},{"name":"Computer and information systems managers","men":"413250","women":"151497"},{"name":"Transportation, storage, and distribution managers","men":"182671","women":"40123"},{"name":"Architectural and engineering managers","men":"131956","women":"12856"}]
-      }
-      // debugger
-      //{"name":"Emergency management directors","men":"5,663","women":"1,641"}
     },
     methods: {
       //filters out metadata and runs functions
@@ -402,7 +379,7 @@
       "footer footer footer footer";
   } */
 
-  @media only screen and (min-width: 800px)   {
+  @media only screen and (min-width: 1151px)   {
        .main {
           display: grid;
           grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
@@ -462,7 +439,7 @@
        }
    }
 
-    @media only screen and (max-width: 799px)   {
+    @media only screen and (max-width: 1150px)   {
          .main {
             display: grid;
             grid-template-columns: auto;

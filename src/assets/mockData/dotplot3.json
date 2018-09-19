@@ -1,0 +1,5 @@
+{
+  "children":[
+    {"name":"Construction managers","max":"71907","min":"62218"},{"name":"Software developers, applications and systems software","max":"101969","min":"88759"},{"name":"Police and sheriff patrol officers","max":"64792","min":"57402"},{"name":"Grounds maintenance workers","max":"25838","min":"22944"},{"name":"First-line supervisors of construction trades and extraction workers","max":"60145","min":"45174"},{"name":"Carpenters","max":"36414","min":"31637"},{"name":"Construction laborers","max":"32214","min":"30378"},{"name":"Pipelayers, plumbers, pipefitters, and steamfitters","max":"47046","min":"45525"},{"name":"Driver/sales workers and truck drivers","max":"42435","min":"32237"},{"name":"Laborers and freight, stock, and material movers, hand","max":"31424","min":"26312"}
+  ]
+}
