@@ -194,7 +194,7 @@
 
     },
     methods: {
-      //filters out metadata and runs functions
+      //filters out metadata and runs filtering functions for each chart
       filterData: function(resp){
         let filteredData = resp.table_rows.rows
         this.info = filteredData
@@ -215,11 +215,11 @@
         var result = data.filter((e)=>{
           return filteredValues.includes(e[0])
         })
-        // debugger
+
         this.mapFilteredData(result);
       },
       filterDotPlot2Data(data){
-        //choose selected fields for the first dot plot
+        //choose selected fields for women's dot plot
         var filteredWomensFields =
         ["Preschool and kindergarten teachers", "Registered nurses", "Nursing, psychiatric, and home health aides", "Childcare workers", "Librarians", "Teacher assistants", "Receptionists and information clerks", "Medical assistants", "Maids and housekeeping cleaners", "Social workers"]
 
@@ -227,10 +227,11 @@
         var result = data.filter((e)=>{
           return filteredWomensFields.includes(e[0])
         })
-        // debugger
+
         this.mapFilteredData2(result);
       },
       filterDotPlot3Data(data){
+        //filtered fields for men's dot plot
         var filteredMensFields =
         ["Driver/sales workers and truck drivers", "Construction managers", "Laborers and freight, stock, and material movers, hand", "First-line supervisors of construction trades and extraction workers", "Construction laborers", "Software developers, applications and systems software", "Grounds maintenance workers", "Police and sheriff patrol officers", "Carpenters", "Pipelayers, plumbers, pipefitters, and steamfitters"]
 
@@ -340,16 +341,8 @@
         console.log(this.info)
         var self = this;
         return this.info.filter((item)=>{
-          // debugger
           return item[0].indexOf(self.searchTerm.toLowerCase())>=0;
-          // return item.name.toLowerCase().indexOf(self.searchTerm.toLowerCase())>=0;
         })
-        // return this.customers.filter(function(cust){return cust.name.toLowerCase().indexOf(self.search.toLowerCase())>=0;})
-        // var inputValue = input;
-        // var result = data.filter((e)=>{
-        //   data.includes(e[0])
-        //   fieldSearch = result
-        // })
       }
     }
   }
@@ -379,7 +372,7 @@
       "footer footer footer footer";
   } */
 
-  @media only screen and (min-width: 1151px)   {
+  @media only screen and (min-width: 800px)   {
        .main {
           display: grid;
           grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
@@ -439,7 +432,7 @@
        }
    }
 
-    @media only screen and (max-width: 1150px)   {
+    @media only screen and (max-width: 799px)   {
          .main {
             display: grid;
             grid-template-columns: auto;
@@ -559,6 +552,10 @@
   .complexity-graphic {
     grid-area: compgraphic;
     margin: 20px 0px 20px 0px;
+  }
+  .comp-text{
+    margin-top: 5px;
+    font-size: 16px;
   }
   .compare-text {
     grid-area: comparetext;

@@ -352,11 +352,11 @@
 </script>
 
 <style>
-  body {
+  /* body {
     font-family: sans-serif;
     font-size: 12px;
     margin: 0;
-  }
+  } */
 
   .checkbox {
     position: absolute;
