@@ -196,7 +196,7 @@
       .get('https://public.enigma.com/api/snapshots/3ca9486a-db7c-4216-8e99-0428e3b0b54d?&row_limit=1000&row_offset=0&include_serialids=true')
       .then(response => {
         var resp = response.data
-        // this.filterData(resp)
+        this.filterData(resp)
         console.log(this.filterData(resp))
       })
       .catch(error => {
