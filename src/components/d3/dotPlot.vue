@@ -45,6 +45,9 @@
   				this.update = true
   			}
         // debugger
+        setTimeout(function(){
+          alert("Hello");
+        }, 4000),
   			this.drawDotPlot(data, this.propID)
   		}
   	},
@@ -70,7 +73,7 @@
         id = this._props.propID,
         xrange = this._props.xAxisRange
       ) {
-
+// debugger
         // var hoverLine = true;
 
         //place chart in correct div on main page

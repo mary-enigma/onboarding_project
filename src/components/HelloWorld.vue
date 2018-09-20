@@ -1,5 +1,11 @@
 <template>
   <div class="main">
+    <div class="loading-parent">
+        <loading :active.sync="isLoading"
+          :can-cancel="true"
+        ></loading>
+        <!-- <button @click.prevent="doAjax">fetch Data</button> -->
+    </div>
     <div class="intro">
       <img src="../assets/images/intro-image.jpg" width="100%" class="intro-image">
       <div class="inner-intro">
@@ -124,6 +130,7 @@
         <h2 class="resources-title">Resources</h2>
         <p>
           Explore more data, dive deeper into the gender wage gap issue, and learn how you can help!
+          <!-- https://blog.cultureamp.com/why-workplace-intersectionality-means-more-than-focusing-on-women -->
         </p>
       </div>
     </div>
@@ -153,6 +160,8 @@
   import dotData3 from '../assets/mockData/dotplot3.json';
   import bubbleData from '../assets/mockData/bubbleChart.json';
   import barData from '../assets/mockData/barChart.json';
+  import Loading from 'vue-loading-overlay';
+  import 'vue-loading-overlay/dist/vue-loading.min.css';
 
   export default {
     name: 'HelloWorld',
@@ -161,21 +170,24 @@
         info: {},
         loading: true,
         errored: false,
-        dotPlot1Data: dotData1,
-        dotPlot2Data: dotData2,
-        dotPlot3Data: dotData3,
-        bubbleChartData: bubbleData,
-        barChartData: barData
+        // dotPlot1Data: dotData1,
+        // dotPlot2Data: dotData2,
+        // dotPlot3Data: dotData3,
+        // bubbleChartData: bubbleData,
+        // barChartData: barData,
+        isLoading: true,
+        fullPage: true
       }
     },
     components: {
       'dot-plot': DotPlot,
       'bar-chart': BarChart,
       'bubble-chart': BubbleChart,
-      'autocomplete': Search
+      'autocomplete': Search,
+      'loading': Loading
     },
     mounted(){
-
+      this.isLoading = false
     },
     created(){
 
@@ -184,13 +196,14 @@
       .get('https://public.enigma.com/api/snapshots/3ca9486a-db7c-4216-8e99-0428e3b0b54d?&row_limit=1000&row_offset=0&include_serialids=true')
       .then(response => {
         var resp = response.data
-        this.filterData(resp)
+        // this.filterData(resp)
+        console.log(this.filterData(resp))
       })
       .catch(error => {
         console.log(error)
         this.errored = true
       })
-      .finally(() => this.loading = false)
+      .finally(() => this.isLoading = false)
 
     },
     methods: {
@@ -263,10 +276,11 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedDotPlot1
-
-        // this.dotPlot1Data = mappedDataObj
+        // debugger
+        this.dotPlot1Data = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot1Data))
+        // this.isLoading = false
       },
       mapFilteredData2(data){
         var mappedDotPlot2 = []
@@ -279,7 +293,7 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedDotPlot2
-        // this.dotPlot2Data = mappedDataObj
+        this.dotPlot2Data = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
@@ -294,7 +308,7 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedDotPlot3
-        // this.dotPlot3Data = mappedDataObj
+        this.dotPlot3Data = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
@@ -309,7 +323,7 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedBarPlot
-        // this.barChartData = mappedDataObj
+        this.barChartData = mappedDataObj
         // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
@@ -332,7 +346,7 @@
         // debugger
         let mappedBubbleDataObj = {}
         mappedBubbleDataObj["children"] = mappedBubble;
-        // this.bubbleChartData = mappedBubbleDataObj
+        this.bubbleChartData = mappedBubbleDataObj
       }
     },
     computed: {
@@ -605,6 +619,9 @@
   }
   .intro-image {
     /* opacity: .9 */
+  }
+  .loading-parent {
+    position: relative;
   }
 
 </style>
