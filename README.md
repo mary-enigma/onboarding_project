@@ -1,6 +1,6 @@
-# mary_onboarding_project
+# Exploring the Gender Pay Gap Through Public Data
 
-This project explores the gender pay gap by occupation using data from the 2016 American Community Survey, hosted on [Enigma Public](https://public.enigma.com/). The relevant data reported:
+This project explores the gender pay gap by occupation using data from the 2016 American Community Survey, hosted on [Enigma Public](https://public.enigma.com/). The relevant [data](https://public.enigma.com/datasets/full-time-year-round-workers-and-median-earnings-in-the-past-12-months-by-sex-and-detailed-occupation-2016/3616bd60-2fec-4cf6-99a3-477dae4afbb9) reported:
 * Total number of full-time, year-round workers per occupation
 * Total number of full-time, year-round workers per occupation by gender
 * Percentage of women in each occupational category
