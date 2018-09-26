@@ -1,8 +1,15 @@
 # mary_onboarding_project
 
-> Onboarding project
+This project explores the gender pay gap by occupation using data from the 2016 American Community Survey, hosted on [Enigma Public](https://public.enigma.com/). The relevant data reported:
+* Total number of full-time, year-round workers per occupation
+* Total number of full-time, year-round workers per occupation by gender
+* Percentage of women in each occupational category
+* Median total earnings by gender per each occupational category
+* Women's earnings as a percentage of men's earnings in each occupational category
 
 ## Build Setup
+
+To run this repo, clone using HTTPS above. Then follow the steps below to run for development or production.
 
 ``` bash
 # install dependencies
@@ -14,14 +21,7 @@ npm run dev
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Details
+This project was built using Vue.js, Axios for api calls, Vuetify as a component/CSS framework.
