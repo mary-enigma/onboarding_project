@@ -1,11 +1,5 @@
 <template>
-  <div class="main">
-    <div class="loading-parent">
-        <loading :active.sync="isLoading"
-          :can-cancel="true"
-        ></loading>
-        <!-- <button @click.prevent="doAjax">fetch Data</button> -->
-    </div>
+  <div class="main" v-if='allDataLoaded'>
     <div class="intro">
       <img src="../assets/images/intro-image.jpg" width="100%" class="intro-image">
       <div class="inner-intro">
@@ -37,7 +31,7 @@
     <div class="about">
       <h3 style="font-size: 20px;">About the Data</h3>
       <p class="about-text">
-        The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered or work performed between men and women.
+        The dataset used for this project explored median earnings reported by men and women in 558 occupational categories. The data specified the number of full-time, year-round workers; the percentage of women in each occupational category; and women’s earnings as a percentage of men’s earnings (the gender pay gap). 334 out of 346 fields - or 96.5% - with large enough sample sizes (100+ cases) reported a pay gap. The gender wage gap refers to the average difference in pay for services rendered or work performed between men and women.
       </p>
     </div>
     <div class="pay-graphic">
@@ -145,6 +139,11 @@
       </p>
     </div>
   </div>
+  <div v-else class="loading-parent">
+      <loading :active.sync="isLoading"
+        :can-cancel="true"
+      ></loading>
+  </div>
 </template>
 
 <script>
@@ -155,11 +154,11 @@
   import BarChart from './d3/stackedBarChart.vue';
   import Search from './search.vue';
   import * as d3 from 'd3';
-  import dotData1 from '../assets/mockData/dotplot1.json';
-  import dotData2 from '../assets/mockData/dotplot2.json';
-  import dotData3 from '../assets/mockData/dotplot3.json';
+  // import dotData1 from '../assets/mockData/dotplot1.json';
+  // import dotData2 from '../assets/mockData/dotplot2.json';
+  // import dotData3 from '../assets/mockData/dotplot3.json';
   import bubbleData from '../assets/mockData/bubbleChart.json';
-  import barData from '../assets/mockData/barChart.json';
+  // import barData from '../assets/mockData/barChart.json';
   import Loading from 'vue-loading-overlay';
   import 'vue-loading-overlay/dist/vue-loading.min.css';
 
@@ -175,6 +174,16 @@
         // dotPlot3Data: dotData3,
         // bubbleChartData: bubbleData,
         // barChartData: barData,
+        dotPlot1Data: undefined,
+        dotPlot2Data: undefined,
+        dotPlot3Data: undefined,
+        bubbleChartData: undefined,
+        barChartData: undefined,
+        dotPlot1DataLoaded: false,
+        dotPlot2DataLoaded: false,
+        dotPlot3DataLoaded: false,
+        barChartDataLoaded: false,
+        bubbleChartDataLoaded: false,
         isLoading: true,
         fullPage: true
       }
@@ -197,7 +206,7 @@
       .then(response => {
         var resp = response.data
         this.filterData(resp)
-        console.log(this.filterData(resp))
+        // console.log(this.filterData(resp))
       })
       .catch(error => {
         console.log(error)
@@ -254,6 +263,16 @@
         // debugger
         this.mapFilteredData3(result);
       },
+      filterBubbleData(data){
+        // debugger
+        // this.bubbleChartData = mappedBubble;
+        var filterBubbleValues = ["Management Occupations", "Business and Financial Operations Occupations", "Computer and Mathematical Occupations", "Architecture and Engineering Occupations", "Life, Physical, and Social Science Occupations", "Community and Social Service Occupations", "Legal Occupations", "Education, Training, and Library Occupations", "Arts, Design, Entertainment, Sports, and Media Occupations", "Healthcare Practitioners and Technical Occupations", "Healthcare Support Occupations", "Protective Service Occupations", "Food Preparation and Serving Related Occupations", "Building and Grounds Cleaning and Maintenance Occupations", "Personal Care and Service Occupations", "Sales and Related Occupations", "Office and Administrative Support Occupations", "Farming, Fishing, and Forestry Occupations", "Construction and Extraction Occupations", "Installation, Maintenance, and Repair Occupations", "Production Occupations", "Transportation Occupations", "Material Moving Occupations"]
+
+        var result = data.filter((e)=>{
+          return filterBubbleValues.includes(e[0])
+        })
+        this.mapBubbleData(result);
+      },
       filterBarData(data){
         var filteredBarFields =
         ["Chief executives", "General and operations managers", "Computer and information systems managers", "Transportation, storage, and distribution managers", "Architectural and engineering managers", "Marketing and sales managers"]
@@ -277,10 +296,28 @@
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedDotPlot1
         // debugger
-        this.dotPlot1Data = mappedDataObj
+        this.dotPlot1Data = mappedDataObj;
+        this.dotPlot1DataLoaded = true;
         // debugger
         // console.log(JSON.stringify(this.dotPlot1Data))
         // this.isLoading = false
+      },
+      mapBubbleData(data){
+        // debugger
+        var mappedBubble = []
+        data.map((val)=>{
+          var mappedData = {}
+          mappedData["Name"] = val[0]
+          mappedData["Count"] = val[16]
+          mappedBubble.push(mappedData)
+        })
+        let mappedDataObj = {}
+        mappedDataObj["children"] = mappedBubble;
+        this.bubbleChartData = mappedDataObj;
+        // this.bubbleChartData = bubbleData;
+        // debugger
+        this.bubbleChartDataLoaded = true;
+        // debugger
       },
       mapFilteredData2(data){
         var mappedDotPlot2 = []
@@ -293,7 +330,8 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedDotPlot2
-        this.dotPlot2Data = mappedDataObj
+        this.dotPlot2Data = mappedDataObj;
+        this.dotPlot2DataLoaded = true;
         // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
@@ -308,7 +346,8 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedDotPlot3
-        this.dotPlot3Data = mappedDataObj
+        this.dotPlot3Data = mappedDataObj;
+        this.dotPlot3DataLoaded = true;
         // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
       },
@@ -323,30 +362,10 @@
         })
         var mappedDataObj = {}
         mappedDataObj["children"] = mappedBarPlot
-        this.barChartData = mappedDataObj
+        this.barChartData = mappedDataObj;
+        this.barChartDataLoaded = true;
         // debugger
         // console.log(JSON.stringify(this.dotPlot2Data))
-      },
-      filterBubbleData(data){
-        // debugger
-        // this.bubbleChartData = mappedBubble;
-        var filterBubbleValues = ["Management Occupations", "Business and Financial Operations Occupations", "Computer and Mathematical Occupations", "Architecture and Engineering Occupations", "Life, Physical, and Social Science Occupations", "Community and Social Service Occupations", "Legal Occupations", "Education, Training, and Library Occupations", "Arts, Design, Entertainment, Sports, and Media Occupations", "Healthcare Practitioners and Technical Occupations", "Healthcare Support Occupations", "Protective Service Occupations", "Food Preparation and Serving Related Occupations", "Building and Grounds Cleaning and Maintenance Occupations", "Personal Care and Service Occupations", "Sales and Related Occupations", "Office and Administrative Support Occupations", "Farming, Fishing, and Forestry Occupations", "Construction and Extraction Occupations", "Installation, Maintenance, and Repair Occupations", "Production Occupations", "Transportation Occupations", "Material Moving Occupations"]
-
-        var bubbleResult = data.filter((e)=>{
-          return filterBubbleValues.includes(e[0])
-        })
-
-        var mappedBubble = []
-        bubbleResult.map((val)=>{
-          var mappedData = {}
-          mappedData["name"] = val[0]
-          mappedData["percentage"] = val[16]
-          mappedBubble.push(mappedData)
-        })
-        // debugger
-        let mappedBubbleDataObj = {}
-        mappedBubbleDataObj["children"] = mappedBubble;
-        this.bubbleChartData = mappedBubbleDataObj
       }
     },
     computed: {
@@ -357,6 +376,9 @@
         return this.info.filter((item)=>{
           return item[0].indexOf(self.searchTerm.toLowerCase())>=0;
         })
+      },
+      allDataLoaded() {
+        return this.dotPlot1DataLoaded && this.dotPlot2DataLoaded && this.dotPlot3DataLoaded && this.barChartDataLoaded && this.bubbleChartDataLoaded
       }
     }
   }

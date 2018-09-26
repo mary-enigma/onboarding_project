@@ -43,25 +43,12 @@
   		// }
   	},
     mounted: function() {
-      // debugger
-      // setTimeout(function(){
-      //   this.dataModel.length !== 0 ? this.drawBubbleChart(
-      //   this._props.dataModel,
-      //   this._props.propID,
-      //   this._props.yaxisLabel,
-      //   this._props.xaxisLabel
-      // ) : null }, 100000000);
-      // debugger
+
   		this.dataModel.length !== 0 ? this.drawBubbleChart(
         this._props.dataModel,
         this._props.propID
       ) : null
 // debugger
-
-      //   setTimeout(function(){
-      //     this.drawBubbleChart(this._props.dataModel,
-      //   this._props.propID);
-      // }, 5000);
 
   	},
     destroyed() {
@@ -132,12 +119,7 @@
                 .attr("transform", function(d) {
                     return "translate(" + d.x + "," + d.y + ")";
                 })
-
-
-            // node.append("title")
-            //     .text(function(d) {
-            //         return d.data.Name + ": " + d.data.Count;
-            //     });
+// debugger
 
           var tooltip = d3.select("body")
             .append("div")
@@ -183,6 +165,7 @@
               // })
                 .text(function(d) {
                     var longText = d.data.Name.substring(0, d.r / 3)
+                    // debugger
                     var text = longText.split(" ")[0].replace( /,/g, "" );
                     return text
                 })
