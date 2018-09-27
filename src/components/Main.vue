@@ -400,151 +400,186 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
-  /* .main {
-    display: grid;
-    grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
-    grid-template-rows: auto;
-    grid-row-gap: 20px;
-    grid-template-areas:
-      "intro intro intro intro"
-      " . dot1 dot1 . "
-      " . about graphic . "
-      " explore explore explore explore "
-      " . bubble bubble . "
-      "lightbulb lightbulb lightbulb lightbulb"
-      " . compgraphic comptext . "
-      "comparetext comparetext comparetext comparetext"
-      " . compare compare . "
-      "top top top top"
-      " . bar bar . "
-      " . resgraph resources . "
-      "footer footer footer footer";
-  } */
+    .main {
+       display: grid;
+       grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
+       grid-template-rows: auto;
+       grid-row-gap: 20px;
+       grid-template-areas:
+         "intro intro intro intro"
+         " . dot1 dot1 . "
+         " . about graphic . "
+         " explore explore explore explore "
+         " . bubble bubble . "
+         "lightbulb lightbulb lightbulb lightbulb"
+         " . compgraphic comptext . "
+         "comparetext comparetext comparetext comparetext"
+         " . compare compare . "
+         "top top top top"
+         " . bar bar . "
+         " . resgraph resources . "
+         "footer footer footer footer";
+    }
 
-  @media only screen and (min-width: 800px)   {
-       .main {
-          display: grid;
-          grid-template-columns: [first] 10% [second] 40% [third] 40% [fourth] 10% [end];
-          grid-template-rows: auto;
-          grid-row-gap: 20px;
-          grid-template-areas:
-            "intro intro intro intro"
-            " . dot1 dot1 . "
-            " . about graphic . "
-            " explore explore explore explore "
-            " . bubble bubble . "
-            "lightbulb lightbulb lightbulb lightbulb"
-            " . compgraphic comptext . "
-            "comparetext comparetext comparetext comparetext"
-            " . compare compare . "
-            "top top top top"
-            " . bar bar . "
-            " . resgraph resources . "
-            "footer footer footer footer";
-       }
-       .intro {
-         grid-area: intro;
-         position: relative;
-       }
-       .inner-intro {
-         position: absolute;
-         top: 40px;
-         left: 40px;
-         right: 500px;
-       }
-       .intro-title {
-         font-size: 30px;
-         color: white;
-         font-weight: 800;
-         text-align: center;
-       }
-       .intro-text {
-         margin-top: 50px;
-         font-size: 16px;
-         color: white;
-         text-align: left;
-         font-weight: 500;
-       }
-       .intro-btn {
-         margin-top: 30px;
-         width: 200px;
-         background-color: #B4E0E9!important;
-         color: white
-       }
-       .about {
-         grid-area: about;
-         margin: 10% 0px 20px 20px;
-       }
-       .complexity-text {
-         grid-area: comptext;
-         margin: 10% 0px 20px 20px;
-       }
-   }
-
-    @media only screen and (max-width: 799px)   {
-         .main {
-            display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: auto;
-            grid-row-gap: 10px;
-            grid-template-areas:
-              "intro intro intro intro"
-              " . dot1 dot1 . "
-              "graphic graphic graphic graphic"
-              "about about about about"
-              " explore explore explore explore "
-              " . bubble bubble . "
-              "lightbulb lightbulb lightbulb lightbulb"
-              " . compgraphic compgraphic . "
-              " . comptext comptext . "
-              "comparetext comparetext comparetext comparetext"
-              " . compare compare . "
-              "top top top top"
-              " . bar bar . "
-              " . resgraph resgraph . "
-              " . resources resources . "
-              "footer footer footer footer";
-         }
-         .intro {
-           grid-area: intro;
-           position: relative;
-         }
-         .inner-intro {
-           position: absolute;
-           top: 30px;
-           left: 20px;
-           right: 300px;
-         }
-         .intro-title {
-           font-size: 16px;
-           color: white;
-           font-weight: 800;
-           text-align: center;
-         }
-         .intro-text {
-           margin-top: 50px;
-           font-size: 14px;
-           color: white;
-           text-align: left;
-           font-weight: 500;
-         }
-         .intro-btn {
-           margin-top: 30px;
-           width: 200px;
-           background-color: #B4E0E9!important;
-           color: white
-         }
-         .about {
-           grid-area: about;
-           margin: 5% 0px 20px 20px;
-         }
-         .complexity-text {
-           grid-area: comptext;
-           margin: 3% 0px 20px 20px;
-         }
-     }
+    .intro {
+      grid-area: intro;
+      position: relative;
+    }
+    .inner-intro {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 500px;
+    }
+    .intro-title {
+      font-size: 30px;
+      color: white;
+      font-weight: 800;
+      text-align: center;
+    }
+    .intro-text {
+      margin-top: 50px;
+      font-size: 16px;
+      color: white;
+      text-align: left;
+      font-weight: 500;
+    }
+    .intro-btn {
+      margin-top: 30px;
+      width: 200px;
+      background-color: #B4E0E9!important;
+      color: white
+    }
+    .about {
+      grid-area: about;
+      margin: 10% 0px 20px 20px;
+    }
+    .complexity-text {
+      grid-area: comptext;
+      margin: 10% 0px 20px 20px;
+    }
+    .help-links {
+      margin-top: 3%;
+      text-align: left;
+      font-size: 16px;
+    }
 
 
+    /* smaller screens */
+     @media (min-width: 830px) and (max-width: 1200px) {
+          .intro {
+            grid-area: intro;
+            position: relative;
+          }
+          .inner-intro {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            right: 300px;
+          }
+          .intro-title {
+            font-size: 20px;
+            color: white;
+            font-weight: 800;
+            text-align: center;
+          }
+          .intro-text {
+            margin-top: 50px;
+            font-size: 14px;
+            color: white;
+            text-align: left;
+            font-weight: 500;
+          }
+          .intro-btn {
+            margin-top: 30px;
+            width: 200px;
+            background-color: #B4E0E9!important;
+            color: white
+          }
+          .about {
+            grid-area: about;
+            margin: 5% 0px 20px 20px;
+          }
+          .complexity-text {
+            grid-area: comptext;
+            margin: 3% 0px 20px 20px;
+          }
+          .help-links {
+            margin-top: 3%;
+            text-align: left;
+            font-size: 12px;
+          }
+      }
+
+      @media (max-width: 829px) {
+           .main {
+              display: grid;
+              grid-template-columns: auto;
+              grid-template-rows: minmax(500px, auto);
+              grid-row-gap: 10px;
+              grid-template-areas:
+                "intro intro intro intro"
+                " . dot1 dot1 . "
+                "graphic graphic graphic graphic"
+                "about about about about"
+                " explore explore explore explore "
+                " . bubble bubble . "
+                "lightbulb lightbulb lightbulb lightbulb"
+                " . compgraphic compgraphic . "
+                " . comptext comptext . "
+                "comparetext comparetext comparetext comparetext"
+                " . compare compare . "
+                "top top top top"
+                " . bar bar . "
+                " . resgraph resgraph . "
+                " . resources resources . "
+                "footer footer footer footer";
+           }
+           .intro {
+             grid-area: intro;
+             position: relative;
+           }
+           .inner-intro {
+             position: absolute;
+             top: 30px;
+             left: 20px;
+             right: 300px;
+           }
+           .intro-title {
+             font-size: 16px;
+             color: white;
+             font-weight: 800;
+             text-align: center;
+           }
+           .intro-text {
+             margin-top: 50px;
+             font-size: 14px;
+             color: white;
+             text-align: left;
+             font-weight: 500;
+           }
+           .intro-btn {
+             margin-top: 30px;
+             width: 200px;
+             background-color: #B4E0E9!important;
+             color: white
+           }
+           .about {
+             grid-area: about;
+             margin: 5% 0px 20px 20px;
+           }
+           .complexity-text {
+             grid-area: comptext;
+             margin: 3% 0px 20px 20px;
+           }
+           .help-links {
+             margin-top: 3%;
+             text-align: left;
+             font-size: 12px;
+           }
+       }
+
+/* rest of styles */
   .intro a {
     color: #7173a9;
   }
@@ -669,10 +704,9 @@
   .loading-parent {
     position: relative;
   }
-  .help-links {
-    margin-top: 3%;
-    text-align: left;
-    font-size: 16px;
-  }
+
+
+
+
 
 </style>
