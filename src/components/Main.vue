@@ -63,7 +63,7 @@
       <p class="comp-text">
         Earnings data adjusted for gender provides valuable information. However, the wage gap goes beyond just earnings by field, or even equal pay for equal work. Factors such as unemployment and career disruption (women leaving the workforce for circumstances like child-bearing or family care, for example) significantly impact the gender pay gap. The gap widens even more when adjusting for race.</br></br>
 
-        This is not just a gender issue, but a societal one. According to the American Community Survey, X% of households had women as the . The gender pay gap contributes to poverty.
+        This is not just a gender issue, but a societal one. Pay disparity has far-reaching economic consequences, contibuting to poverty rates among working women and their families.
       </p>
     </div>
     <div class="complexity-graphic">
@@ -119,14 +119,30 @@
       <div class="resources-text">
         <h2 class="resources-title">Resources</h2>
         <p>
-          Explore more data, dive deeper into the gender wage gap issue, and learn how you can help!
-          <!-- https://blog.cultureamp.com/why-workplace-intersectionality-means-more-than-focusing-on-women -->
+          Explore more data, dive deeper into the wage gap issue, and learn how you can help
+          <ul class="help-links">
+            <li>
+              <a href="https://blog.cultureamp.com/why-workplace-intersectionality-means-more-than-focusing-on-women" target="_blank">The importance of promoting workplace intersectionality</a> <i>(Culture Amp)</i>
+            </li>
+            <li>
+                <a href="https://www.usatoday.com/story/tech/2018/09/19/equity-gap-women-tech-get-half-stock-options-men-do/1353459002/" target="_blank">It's not just salary: the equity pay gap in tech</a> <i>(USA Today)</i>
+            </li>
+            <li>
+                <a href="https://www.nytimes.com/2018/05/13/business/gender-pay-britain.html" target="_blank">Flexible work schedules, agressive recruitment, transparent reporting: what governments and organizations are doing to close the gap</a> <i>(The New York Times)</i>
+            </li>
+            <li>
+                <a href="https://hbr.org/podcast/2018/02/mind-the-wage-gap" target="_blank">An overlooked aspect of the wage gap: age and its effects on earnings</a> <i>(a podcast from the Harvard Business Review)</i>
+            </li>
+            <li>
+                <a href="https://www.economist.com/international/2017/10/07/the-gender-pay-gap" target="_blank">Where the two roads diverge: motherhood, fatherhood, and the gender pay gap</a> <i>(The Economist)</i>
+            </li>
+          </ul>
         </p>
       </div>
     </div>
     <div class="footer">
       <h3>About Enigma Public</h3>
-      <p>
+      <p class="footer-text1">
         Enigma Public is the world's broadest collection of public data and largest open government data source. With over 100,000 free datasets, Enigma is strongly committed to helping individuals and organizations gain a more comprehensive view of our world.
       </p>
       <h3>About This Project</h3>
@@ -636,6 +652,11 @@
   }
   .loading-parent {
     position: relative;
+  }
+  .help-links {
+    margin-top: 3%;
+    text-align: left;
+    font-size: 16px;
   }
 
 </style>
