@@ -141,15 +141,20 @@
       </div>
     </div>
     <div class="footer">
-      <h3>About Enigma Public</h3>
-      <p class="footer-text1">
-        Enigma Public is the world's broadest collection of public data and largest open government data source. With over 100,000 free datasets, Enigma is strongly committed to helping individuals and organizations gain a more comprehensive view of our world.
-      </p>
+      <div class="about-enigma">
+        <h3>About Enigma Public</h3>
+        <p>
+          <a href="https://public.enigma.com/" style="color: white;">Enigma Public</a> is the world's broadest collection of public data and largest open government data source. With over 100,000 free datasets, Enigma is strongly committed to helping individuals and organizations gain a more comprehensive view of our world.
+        </p>
+      </div>
+    <div class="about-project">
       <h3>About This Project</h3>
       <p>
-         Made by <a href="https://github.com/marya314">Mary Boyd</a>.
+         Made by <a href="https://github.com/marya314" style="color: white;">Mary Boyd</a>.
       </p>
     </div>
+  </div>
+
   </div>
   <div v-else class="loading-parent">
       <loading :active.sync="isLoading"
@@ -569,7 +574,7 @@
   }
   .dot-plot-overview {
     grid-area: dot1;
-    margin-top: 50px;
+    margin: 50px 0px 25px 0px;
   }
 
   .pay-graphic {
@@ -588,6 +593,17 @@
     grid-area: footer;
     background-color: #508694;
     color: white;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-enigma {
+    margin: 15px;
+    grid-column: 1;
+  }
+  .about-project {
+    margin: 15px;
+    grid-column: 2;
   }
   .lightbulb-graphic {
     grid-area: lightbulb;
