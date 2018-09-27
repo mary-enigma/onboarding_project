@@ -55,10 +55,6 @@
         ></bubble-chart>
       </div>
     </div>
-<!--
-      <section v-if="errored">
-        <p>We're sorry, we're not able to retrieve this information at the moment. Please try again later.</p>
-    </section> -->
     <div class="lightbulb-graphic">
       <img src="../assets/images/lightbulb-graphic.jpg" width="100%" class="graphic">
     </div>
@@ -157,10 +153,11 @@
   // import dotData1 from '../assets/mockData/dotplot1.json';
   // import dotData2 from '../assets/mockData/dotplot2.json';
   // import dotData3 from '../assets/mockData/dotplot3.json';
-  import bubbleData from '../assets/mockData/bubbleChart.json';
+  // import bubbleData from '../assets/mockData/bubbleChart.json';
   // import barData from '../assets/mockData/barChart.json';
   import Loading from 'vue-loading-overlay';
   import 'vue-loading-overlay/dist/vue-loading.min.css';
+  // import {filterDotPlot1Data, mapFilteredData} from './filters.js'
 
   export default {
     name: 'Main',
@@ -169,11 +166,6 @@
         info: {},
         loading: true,
         errored: false,
-        // dotPlot1Data: dotData1,
-        // dotPlot2Data: dotData2,
-        // dotPlot3Data: dotData3,
-        // bubbleChartData: bubbleData,
-        // barChartData: barData,
         dotPlot1Data: undefined,
         dotPlot2Data: undefined,
         dotPlot3Data: undefined,
