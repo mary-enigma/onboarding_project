@@ -633,7 +633,7 @@
         }
     }
 
-    @media (min-width: 350px) and (max-width: 829px) {
+    @media (min-width: 601px) and (max-width: 829px) {
          .main {
             display: grid;
             grid-template-columns: [first] 5% [second] 45% [third] 45% [fourth] 5% [end];
@@ -666,7 +666,7 @@
            position: absolute;
            top: 10px;
            left: 20px;
-           right: 300px;
+           right: 20px;
          }
          .intro-title h1 {
            font-size: 20px;
@@ -701,5 +701,78 @@
            font-size: 12px;
          }
      }
+
+     @media (min-width: 400px) and (max-width: 600px) {
+          .main {
+             display: grid;
+             grid-template-columns: [first] 0% [second] 50% [third] 50% [fourth] 0% [end];
+             grid-template-rows: auto;
+             grid-template-rows: auto;
+             grid-row-gap: 10px;
+             grid-template-areas:
+               "intro intro intro intro"
+               " . dot1 dot1 . "
+               "graphic graphic graphic graphic"
+               "about about about about"
+               " explore explore explore explore "
+               " . bubble bubble . "
+               "lightbulb lightbulb lightbulb lightbulb"
+               " . compgraphic compgraphic . "
+               " . comptext comptext . "
+               "comparetext comparetext comparetext comparetext"
+               " . compare compare . "
+               "top top top top"
+               " . bar bar . "
+               " . resgraph resgraph . "
+               " . resources resources . "
+               "footer footer footer footer";
+          }
+          .intro {
+            grid-area: intro;
+            position: relative;
+          }
+          .inner-intro {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            right: 20px;
+          }
+          .intro-title h1 {
+            font-size: 14px;
+            color: white;
+            font-weight: 800;
+            text-align: center;
+          }
+          .intro-text {
+            margin-top: 5px;
+            font-size: 10px;
+            color: white;
+            text-align: left;
+            font-weight: 500;
+          }
+          .intro-btn {
+            margin-top: 10px;
+            font-size: 12px;
+            width: 125px;
+            background-color: #B4E0E9!important;
+            color: white
+          }
+          .graphic {
+            margin-top: 40px;
+          }
+          .about {
+            grid-area: about;
+            margin: 5% 0px 20px 20px;
+          }
+          .complexity-text {
+            grid-area: comptext;
+            margin: 3% 0px 20px 20px;
+          }
+          .help-links {
+            margin-top: 3%;
+            text-align: left;
+            font-size: 12px;
+          }
+      }
 
 </style>
