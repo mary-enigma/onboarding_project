@@ -1,7 +1,6 @@
 <template>
 
   <div style="width:100%;height:100%">
-    <!-- <resize-observer @notify="resizeSVG"></resize-observer> -->
     <div :id="propID" style="width:100%;height:100%" class="bubbleChart"/>
   </div>
 
@@ -10,13 +9,9 @@
 <script>
   import * as d3 from 'd3';
   import $ from "jquery";
-  // import { ResizeObserver } from 'vue-resize';
 
   export default {
     name: 'bubble-chart',
-    components: {
-      'resize-observer': ResizeObserver
-    },
     props: {
       dataModel: {
       },
@@ -55,10 +50,6 @@
       d3.selectAll(`.${this.propID}_tooltip`).remove()
     },
     methods: {
-      //resizes the SVG when DOM resizes
-      resizeSVG: function(){
-        this.dataModel.length !== 0 ? this.drawBubbleChart() : null;
-      },
 
       //draws the visualization
       drawBubbleChart: function (

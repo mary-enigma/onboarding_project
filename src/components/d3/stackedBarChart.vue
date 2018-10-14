@@ -1,6 +1,5 @@
 <template>
     <div style="width:100%;height:100%">
-      <!-- <resize-observer @notify="resizeSVG"></resize-observer> -->
       <div :id="propID" style="width:100%;height:100%" class="stackedBarChart"/>
     </div>
 </template>
@@ -8,14 +7,9 @@
 <script>
   import * as d3 from 'd3';
   import $ from "jquery";
-  // import { ResizeObserver } from 'vue-resize';
 
   export default {
     name: 'bar-chart',
-    components: {
-      'resize-observer': ResizeObserver,
-    },
-
     props: {
       dataModel: {
         type: Object,
@@ -53,12 +47,6 @@
       d3.selectAll(`.${this.propID}_tooltip`).remove()
     },
     methods: {
-      /**
-      * @function resizeSVG - redraws the SVG on window resize
-      */
-      resizeSVG: function(){
-        this.dataModel.length !== 0 ? this.drawStackedBarChart() : null;
-      },
       drawStackedBarChart: function (
         data = this.dataModel,
         id = this._props.propID
