@@ -104,7 +104,7 @@
           var y = d3.scaleLinear()
             .range([height, 0]);
 
-          var colors = ["#4A89DC", "D770AD"]
+          var colors = ["#4A89DC", "#D770AD"]
           var stack = d3.stack()
               .keys(keys)
               .order(d3.stackOrderNone)

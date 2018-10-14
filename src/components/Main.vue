@@ -165,7 +165,6 @@
 
 <script>
   import axios from 'axios';
-  // import 'vue-resize/dist/vue-resize.css';
   import DotPlot from './d3/dotPlot.vue';
   import BubbleChart from './d3/bubbleChart.vue';
   import BarChart from './d3/stackedBarChart.vue';
