@@ -63,7 +63,7 @@
       <p class="comp-text">
         Earnings data adjusted for gender provides valuable information. However, the wage gap goes beyond just earnings by field, or even equal pay for equal work. Factors such as unemployment and career disruption (women leaving the workforce for circumstances like child-bearing or family care, for example) significantly impact the gender pay gap. The gap widens even more when adjusting for race.</br></br>
 
-        This is not just a gender issue, but a societal one. Pay disparity has far-reaching economic consequences, contibuting to poverty rates among working women and their families.
+        This is not just a gender issue, but a societal one. Pay disparity has far-reaching economic consequences, contributing to poverty rates among working women and their families.
       </p>
     </div>
     <div class="complexity-graphic">
