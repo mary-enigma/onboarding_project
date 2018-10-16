@@ -143,17 +143,13 @@
     <div class="footer">
       <div class="about-enigma">
         <h3>About Enigma Public</h3>
-        <p>
-          <a href="https://public.enigma.com/" style="color: white;">Enigma Public</a> is the world’s broadest collection of public data, bringing together thousands of data sources into a single searchable database. Enigma is strongly committed to helping individuals and organizations gain a more comprehensive view of our world.    
-        </p>
+        <p><a href="https://public.enigma.com/" style="color: white;">Enigma Public</a> is the world’s broadest collection of public data, bringing together thousands of data sources into a single searchable database. Enigma is strongly committed to helping individuals and organizations gain a more comprehensive view of our world.</p>
       </div>
-    <div class="about-project">
-      <h3>About This Project</h3>
-      <p>
-         Made by <a href="https://github.com/marya314" style="color: white;">Mary Boyd</a>.
-      </p>
+      <div class="about-project">
+        <h3>About This Project</h3>
+        <p>Made by <a href="https://github.com/marya314" style="color: white;">Mary Boyd</a>.</p>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
