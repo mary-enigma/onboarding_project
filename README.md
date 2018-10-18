@@ -7,6 +7,8 @@ This project explores the gender pay gap by occupation using data from the 2016 
 * Median total earnings by gender per each occupational category
 * Women's earnings as a percentage of men's earnings in each occupational category
 
+The project measures the pay gap by common occupation, by general field, and in fields where workers are predominantly women and predominantly men. It also looks at the number of women in high-level managerial and executive positions compared with the number of men.
+
 ## Build Setup
 
 To run this repo, clone using HTTPS above. Then follow the steps below to run for development or production.
@@ -24,4 +26,4 @@ npm run build
 ```
 
 ## Details
-This project was built using Vue.js, Axios for api calls, Vuetify as a component/CSS framework.
+This project was built in Vue.js; it used D3 for the charts, Axios for api calls, Vuetify as a component/CSS framework, and CSSGrid for layout.
