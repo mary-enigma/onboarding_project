@@ -584,7 +584,7 @@
 
 
   /* smaller screens */
-   @media (min-width: 830px) and (max-width: 1200px) {
+   @media (min-width: 900px) and (max-width: 1200px) {
         .intro {
           grid-area: intro;
           position: relative;
@@ -629,7 +629,7 @@
         }
     }
 
-    @media (min-width: 601px) and (max-width: 829px) {
+    @media (max-width: 850px) {
          .main {
             display: grid;
             grid-template-columns: [first] 5% [second] 45% [third] 45% [fourth] 5% [end];
@@ -696,9 +696,12 @@
            text-align: left;
            font-size: 12px;
          }
+         .pay-graphic {
+           margin-top: 20px;
+         }
      }
 
-     @media (min-width: 400px) and (max-width: 600px) {
+     /* @media (min-width: 400px) and (max-width: 600px) {
           .main {
              display: grid;
              grid-template-columns: [first] 0% [second] 50% [third] 50% [fourth] 0% [end];
@@ -769,6 +772,6 @@
             text-align: left;
             font-size: 12px;
           }
-      }
+      } */
 
 </style>

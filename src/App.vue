@@ -19,4 +19,8 @@ export default {
   color: #2c3e50;
 }
 
+body{
+   min-width:850px;
+}
+
 </style>
